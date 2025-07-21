@@ -7,11 +7,12 @@ export default function Home() {
     <>
       {/* top gradient */}
 
-      <div className="w-1/1 h-0 shadow-[0_0_200px_100px_rgba(0,0,0,0.5)] shadow-[#c800ff]"></div>
+      <div className="w-1/1 h-0 shadow-[0_0_200px_100px_rgba(0,0,0,0.5)]
+       shadow-[#c800ff] fixed -z-2"></div>
 
       {/* nav bar */}
 
-      <nav className="flex justify-between p-3">
+      <nav className="flex justify-between p-3 w-1/1 fixed top-0 backdrop-blur-md bg-[rgba(0,0,0,0.60)]">
         {/* logo */}
         <div className="">
           <img className="w-1/6 max-w-100 min-w-15 h-auto mr-2" src="website-logo.png" />
