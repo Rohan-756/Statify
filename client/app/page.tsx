@@ -88,12 +88,12 @@ export default function Home() {
           <section className="flex justify-center max-sm:justify-start">
             <div className="flex flex-col items-start justify-start text-sm">
               <li className="list-none hover:underline cursor-pointer active:underline">
-                About
+              ‧ About
               </li>
               <li className="list-none hover:underline cursor-pointer active:underline">
                 <a href="https://github.com/Rohan-756/Statify" target="_blank"
                   rel="noopener noreferrer">
-                  GitHub
+                  ‧ GitHub
                 </a>
               </li>
             </div>

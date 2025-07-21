@@ -8,19 +8,15 @@ dotenv.config();
 const app = express();
 app.use(cors());
 
-const PORT = 4000;
+const PORT = process.env.PORT;
 const CLIENT_ID = process.env.CLIENT_ID;
 const CLIENT_SECRET = process.env.CLIENT_SECRET;
-const REDIRECT_URI = 'http://localhost:3001/callback'; // update if deployed
+const REDIRECT_URI = 'http://127.0.0.1:4000/callback'; // update if deployed
 
 
 app.get('/', (req, res) => {
    res.send(
-    {
-      name:"Rohan",
-      age:19,
-      id:12309713
-    }
+    "test message"
    );
 });
 
@@ -65,7 +61,7 @@ app.get('/callback', async (req, res) => {
 
     const { access_token, refresh_token } = response.data;
 
-    res.json({ access_token, refresh_token });
+    res.json( {access_token,refresh_token} );
   } catch (error) {
     res.status(400).json({ error: 'Token exchange failed', details: error.message });
   }
