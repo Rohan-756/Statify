@@ -61,7 +61,21 @@ app.get('/callback', async (req, res) => {
 
     const { access_token, refresh_token } = response.data;
 
-    res.json( {access_token,refresh_token} );
+    res.cookie("access_token",access_token,{
+      httpOnly:true,
+      secure:process.env.NODE_ENV === "production",
+      samesite:"Lax",
+      maxAge: 3600 * 1000
+    });
+
+    res.cookie("refresh_token",refresh_token,{
+      httpOnly:true,
+      secure:process.env.NODE_ENV === "production",
+      sameSite:"Lax",
+      maxAge:3600 * 1000 * 30
+    })
+
+    res.redirect("http://localhost:3000/stats");
   } catch (error) {
     res.status(400).json({ error: 'Token exchange failed', details: error.message });
   }
@@ -74,7 +88,7 @@ app.get('/top-tracks', async (req, res) => {
   try {
     const response = await axios.get('https://api.spotify.com/v1/me/top/tracks', {
       headers: {
-        Authorization: token,
+        Authorization: access_token,
       },
     });
 
