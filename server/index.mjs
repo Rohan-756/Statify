@@ -8,7 +8,7 @@ import cookieParser from 'cookie-parser';
 dotenv.config();
 const app = express();
 app.use(cors({
-  origin: ["http://localhost:3000","http://127.0.0.1:3000"],
+  origin: "http://127.0.0.1:3000",
   credentials: true
 }));
 app.use(cookieParser());
@@ -16,7 +16,6 @@ app.use(cookieParser());
 const PORT = process.env.PORT;
 const CLIENT_ID = process.env.CLIENT_ID;
 const CLIENT_SECRET = process.env.CLIENT_SECRET;
-// const REDIRECT_URI = 'http://127.0.0.1:4000/callback'; // update if deployed
 const REDIRECT_URI='http://127.0.0.1:3000/auth';
 
 
@@ -81,7 +80,7 @@ app.get('/callback', async (req, res) => {
       sameSite: "lax",
       maxAge: 3600 * 1000 * 30
     });
-    console.log("Cookies set");
+    // console.log("Cookies set");
 
     res.json("Cookies set successfully");
 

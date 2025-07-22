@@ -10,7 +10,7 @@ const Page = () => {
   useEffect(() => {
     const fetchUserData = async () => {
       try {
-        const response = await fetch(`http://localhost:4000/callback?code=${code}`, {
+        const response = await fetch(`/api/callback?code=${code}`, {
           method: "GET",
           credentials: "include", // ✅ ensures cookies are sent and received
         });

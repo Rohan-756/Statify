@@ -19,7 +19,7 @@ export default function Home() {
         </div>
         {/* buttons */}
         <div className="flex gap-4 justify-center items-center max-sm:gap-2">
-          <Button className="text-white font-semibold rounded-full 
+          <Button className="text-black font-semibold rounded-full 
         bg-[#1ed760] hover:bg-[#1db954] cursor-pointer active:bg-[#1db954] flex 
         justify-center items-center h-min max-sm:text-xs max-sm:px-[8px]">
             Login with Spotify
@@ -55,7 +55,7 @@ export default function Home() {
           We'll pull in your listening data securely and give you a fresh,
           fun look at your music story — no playlists touched, just insights delivered.
           <a href="http://localhost:4000/login">
-            <Button className="text-white text-md p-[10px] font-semibold 
+            <Button className="text-black text-md p-[10px] font-semibold 
             rounded-full bg-[#1ed760] hover:bg-[#1db954] cursor-pointer active:bg-[#1db954] col-2 mx-auto
             flex justify-center items-center w-2/3 h-min min-w-fit mt-8">
               Discover yourself!
