@@ -3,21 +3,27 @@ import axios from 'axios';
 import dotenv from 'dotenv';
 import cors from 'cors';
 import querystring from 'querystring';
+import cookieParser from 'cookie-parser';
 
 dotenv.config();
 const app = express();
-app.use(cors());
+app.use(cors({
+  origin: ["http://localhost:3000","http://127.0.0.1:3000"],
+  credentials: true
+}));
+app.use(cookieParser());
 
 const PORT = process.env.PORT;
 const CLIENT_ID = process.env.CLIENT_ID;
 const CLIENT_SECRET = process.env.CLIENT_SECRET;
-const REDIRECT_URI = 'http://127.0.0.1:4000/callback'; // update if deployed
+// const REDIRECT_URI = 'http://127.0.0.1:4000/callback'; // update if deployed
+const REDIRECT_URI='http://127.0.0.1:3000/auth';
 
 
 app.get('/', (req, res) => {
-   res.send(
+  res.send(
     "test message"
-   );
+  );
 });
 
 // Redirect user to Spotify login
@@ -29,6 +35,7 @@ app.get('/login', (req, res) => {
     client_id: CLIENT_ID,
     scope: scope,
     redirect_uri: REDIRECT_URI,
+    show_dialog: 'true',
   });
 
   res.redirect(`https://accounts.spotify.com/authorize?${queryParams}`);
@@ -61,21 +68,24 @@ app.get('/callback', async (req, res) => {
 
     const { access_token, refresh_token } = response.data;
 
-    res.cookie("access_token",access_token,{
-      httpOnly:true,
-      secure:process.env.NODE_ENV === "production",
-      samesite:"Lax",
+    res.cookie("access_token", access_token, {
+      httpOnly: true,
+      secure: process.env.NODE_ENV === "production",
+      sameSite: "lax",
       maxAge: 3600 * 1000
     });
 
-    res.cookie("refresh_token",refresh_token,{
-      httpOnly:true,
-      secure:process.env.NODE_ENV === "production",
-      sameSite:"Lax",
-      maxAge:3600 * 1000 * 30
-    })
+    res.cookie("refresh_token", refresh_token, {
+      httpOnly: true,
+      secure: process.env.NODE_ENV === "production",
+      sameSite: "lax",
+      maxAge: 3600 * 1000 * 30
+    });
+    console.log("Cookies set");
 
-    res.redirect("http://localhost:3000/stats");
+    res.json("Cookies set successfully");
+
+
   } catch (error) {
     res.status(400).json({ error: 'Token exchange failed', details: error.message });
   }
@@ -88,7 +98,7 @@ app.get('/top-tracks', async (req, res) => {
   try {
     const response = await axios.get('https://api.spotify.com/v1/me/top/tracks', {
       headers: {
-        Authorization: access_token,
+        Authorization: token,
       },
     });
 

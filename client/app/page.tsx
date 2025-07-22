@@ -21,7 +21,7 @@ export default function Home() {
         <div className="flex gap-4 justify-center items-center max-sm:gap-2">
           <Button className="text-white font-semibold rounded-full 
         bg-[#1ed760] hover:bg-[#1db954] cursor-pointer active:bg-[#1db954] flex 
-        justify-center items-center h-min max-sm:text-xs max-sm:px-[6px]">
+        justify-center items-center h-min max-sm:text-xs max-sm:px-[8px]">
             Login with Spotify
           </Button>
           <Menu className="text-white" />
@@ -30,11 +30,11 @@ export default function Home() {
 
       {/* header line */}
 
-      <div className="mx-auto w-fit text-white my-[80px]">
-        <h1 className="text-6xl md:text-4xl sm:text-3xl max-sm:text-2xl flex flex-col justify-center items-start">
+      <div className="mx-auto w-fit text-white my-[80px] ">
+        <h1 className="text-6xl md:text-4xl sm:text-4xl max-sm:text-[6vw] flex flex-col justify-center items-start">
           <span>Get to know your</span>
           <div className="flex gap-2 items-center">
-            <img className="w-auto h-15 md:h-12 sm:h-10 max-sm:h-8" src="spotify-logo.png" />
+            <img className="w-auto h-15 md:h-12 sm:h-12 max-sm:h-[8vw]" src="spotify-logo.png" />
             <span>stats — For Free</span>
           </div>
         </h1>
@@ -51,16 +51,16 @@ export default function Home() {
         <div className="max-sm:order-1"><img className=" rounded-xl shadow-2xl shadow-slate-800" src="man_listening_songs.jpg"></img></div>
         <div className="max-sm:order-3"><img className=" rounded-xl shadow-2xl shadow-slate-800" src="woman_listening_songs.jpg"></img></div>
         <div className="text-white min-lg:text-xl md:text-lg font-semibold text-justify flex flex-col justify-center max-sm:order-4">
-            <span className="text-2xl min-lg:text-4xl font-semibold mb-[2px]">Connect your Spotify to begin.</span>
-            We'll pull in your listening data securely and give you a fresh,
-            fun look at your music story — no playlists touched, just insights delivered.
+          <span className="text-2xl min-lg:text-4xl font-semibold mb-[2px]">Connect your Spotify to begin.</span>
+          We'll pull in your listening data securely and give you a fresh,
+          fun look at your music story — no playlists touched, just insights delivered.
           <a href="http://localhost:4000/login">
-          <Button className="text-white text-md p-[10px] font-semibold 
-          rounded-full bg-[#1ed760] hover:bg-[#1db954] cursor-pointer active:bg-[#1db954] col-2 mx-auto
-          flex justify-center items-center w-2/3 h-min min-w-fit mt-8">    
+            <Button className="text-white text-md p-[10px] font-semibold 
+            rounded-full bg-[#1ed760] hover:bg-[#1db954] cursor-pointer active:bg-[#1db954] col-2 mx-auto
+            flex justify-center items-center w-2/3 h-min min-w-fit mt-8">
               Discover yourself!
               <ArrowRight />
-          </Button>
+            </Button>
           </a>
         </div>
       </div>

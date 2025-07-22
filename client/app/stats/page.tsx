@@ -1,9 +1,14 @@
-import React from 'react'
+"use client";
 
-const page = () => {
+import React, { useEffect } from 'react';
+
+const Page = () => {
+
   return (
-    <div>Hello</div>
-  )
-}
+    <>
+      <div>Hello</div>
+    </>
+  );
+};
 
-export default page
+export default Page;
