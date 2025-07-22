@@ -6,9 +6,11 @@ export default function Home() {
   return (
     <>
       {/* top gradient */}
+      {/* shadow-[#c800ff]       */}
 
-      <div className="w-1/1 h-0 shadow-[0_0_200px_100px_rgba(0,0,0,0.5)]
-       shadow-[#c800ff] fixed -z-2"></div>
+      <div className="w-1/1 h-0 shadow-[0_0_200px_100px]
+      shadow-[#a955f7ea]
+      fixed -z-2"></div>
 
       {/* nav bar */}
 
@@ -19,11 +21,13 @@ export default function Home() {
         </div>
         {/* buttons */}
         <div className="flex gap-4 justify-center items-center max-sm:gap-2">
+        <a href="http://localhost:4000/login">
           <Button className="text-black font-semibold rounded-full 
         bg-[#1ed760] hover:bg-[#1db954] cursor-pointer active:bg-[#1db954] flex 
         justify-center items-center h-min max-sm:text-xs max-sm:px-[8px]">
             Login with Spotify
           </Button>
+        </a>
           <Menu className="text-white" />
         </div>
       </nav>
