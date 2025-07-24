@@ -1,6 +1,5 @@
 import { Button } from "@/components/ui/button";
 import { ArrowRight, Menu } from "lucide-react";
-import Image from "next/image";
 
 export default function Home() {
   return (
@@ -8,14 +7,14 @@ export default function Home() {
 
       {/* top gradient */}
 
-      <div className="w-1/1 h-0 shadow-[0_0_200px_100px shadow-[#a955f7ea] fixed -z-2"></div>
-
+      <div className="w-screen h-0 shadow-[0_0_200px_150px] shadow-[#a955f7ea] fixed -z-2"></div>    
+      
       {/* nav bar */}
 
-      <nav className="flex justify-between p-3 w-1/1 fixed top-0 backdrop-blur-md bg-[rgba(0,0,0,0.60)]">
+      <nav className="flex justify-between px-3 py-2 w-1/1 fixed top-0 backdrop-blur-md bg-[rgba(0,0,0,0.60)]">
         {/* logo */}
         <div className="">
-          <img className="w-1/6 max-w-100 min-w-15 h-auto mr-2" src="website-logo.png" />
+          <img className="min-lg:w-21 md:w-19 sm:w-17 max-sm:w-15 h-auto mr-2" src="website-logo.png" />
         </div>
         {/* buttons */}
         <div className="flex gap-4 justify-center items-center max-sm:gap-2">

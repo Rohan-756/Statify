@@ -3,7 +3,9 @@
 import React, { useEffect, useState } from "react";
 import { useRouter, useSearchParams } from "next/navigation";
 import './auth.css';
-import { ShieldAlert } from "lucide-react";
+import { Frown } from "lucide-react";
+import { Button } from "@/components/ui/button";
+import Link from "next/link";
 
 const Page = () => {
     const searchParams = useSearchParams();
@@ -27,7 +29,7 @@ const Page = () => {
                     throw new Error(`Error ${response.status}: ${response.statusText}`);
                 }
 
-                console.log("Authentication complete");
+                // console.log("Authentication complete");
                 router.push("/stats");
             } catch (err) {
                 console.error("Authentication failed", err);
@@ -41,23 +43,26 @@ const Page = () => {
     return (
         <>
             {/* shadow effect */}
-            <div className="w-full h-0 shadow-[0_0_300px_150px_rgba(0,0,0,0.5)] fixed -z-2 shadow-[#c800ff] topShadow"></div>
+            <div className="w-full h-0 shadow-[0_0_300px_150px_rgba(0,0,0,0.5)] fixed -z-2 shadow-[#a955f7ea] topShadow"></div>
 
             {/* message container */}
             <div className="text-white flex flex-col justify-center items-center w-screen h-screen">
                 {error ? (
                     <>
                         {/* in case of error */}
-                        <ShieldAlert className="w-[100px] h-[100px] mb-[20px]"/>
-                        <div className="text-2xl font-semibold text-red-500">Authentication Failed</div>
-                        <div className="text-xl font-semibold">Please try again.</div>
+                        <Frown className="w-[100px] h-[100px] mb-[20px]"/>
+                        <div className="text-2xl font-semibold text-red-500 mb-3">Something went wrong</div>
+                        <Link href="/">
+                        <Button className="text-lg text-black font-semibold m-3 bg-[#1ed760] 
+                        hover:bg-[#1db954] cursor-pointer rounded-full px-5">Click to go back</Button>
+                        </Link>
+                        
                     </>
                 ) : (
                     <>
                         {/* if no error */}
                         <div className="spinning-disk"></div>
-                        <div className="text-2xl font-semibold">Authenticating.</div>
-                        <div className="text-xl font-semibold">Please Wait...</div>
+                        <div className="text-2xl font-semibold mb-1">Signing you in...</div>
                     </>
                 )}
             </div>

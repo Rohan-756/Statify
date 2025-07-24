@@ -6,7 +6,7 @@ const Page = () => {
 
   return (
     <>
-      <div className="text-white">Hello</div>
+      <div className="">Some text</div>
     </>
   );
 };
