@@ -7,16 +7,22 @@ import cookieParser from 'cookie-parser';
 
 dotenv.config();
 const app = express();
+app.use(cookieParser());
 app.use(cors({
   origin: "http://127.0.0.1:3000",
   credentials: true
 }));
-app.use(cookieParser());
+app.use(express.json());
 
 const PORT = process.env.PORT;
 const CLIENT_ID = process.env.CLIENT_ID;
 const CLIENT_SECRET = process.env.CLIENT_SECRET;
 const REDIRECT_URI='http://127.0.0.1:3000/auth';
+
+app.use((req, res, next) => {
+  console.log('Cookies:', req.cookies); // Logs cookies from each request
+  next();
+});
 
 
 app.get('/', (req, res) => {
@@ -92,12 +98,17 @@ app.get('/callback', async (req, res) => {
 
 // Get user's top tracks (pass access token in header as Bearer token)
 app.get('/top-tracks', async (req, res) => {
-  const token = req.headers.authorization;
+  const token = req.cookies["access_token"];
+  console.log(req.cookies)
+
+  if (!token) {
+    return res.status(401).json({ error: 'Access token missing in cookies' });
+  }
 
   try {
     const response = await axios.get('https://api.spotify.com/v1/me/top/tracks', {
       headers: {
-        Authorization: token,
+        Authorization: `Bearer ${token}`,
       },
     });
 
