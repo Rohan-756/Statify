@@ -3,27 +3,27 @@
     height: 0px;
     background-color: black;
     border-radius: 10px;
-    box-shadow: 0 0 200px 150px #a955f7ea;
+    box-shadow: 0 0 200px 150px rgb(174,0,255);
     animation: pulse 4s ease-in-out infinite;
 }
 
 @keyframes pulse {
     0% {
-        box-shadow: 0 0 160px 110px #a955f7ea;
+        box-shadow: 0 0 160px 110px rgb(174,0,255);
     }
 
     50% {
-        box-shadow: 0 0 200px 150px #a955f7ea;
+        box-shadow: 0 0 200px 150px rgb(174,0,255);
     }
 
     100% {
-        box-shadow: 0 0 160px 110px #a955f7ea;
+        box-shadow: 0 0 160px 110px rgb(174,0,255);
     }
 }
 
 .spinning-disk {
-    width: 100px;
-    height: 100px;
+    width: 80px;
+    height: 80px;
     border: 8px solid rgba(89, 93, 90, 0.6);
     /* light ring */
     border-top: 8px solid #1db954;

@@ -1,5 +1,6 @@
+import Toggle from "@/components/Toggle";
 import { Button } from "@/components/ui/button";
-import { ArrowRight, Menu } from "lucide-react";
+import { ArrowRight, Menu, Moon, Sun } from "lucide-react";
 
 export default function Home() {
   return (
@@ -7,7 +8,7 @@ export default function Home() {
 
       {/* top gradient */}
 
-      <div className="w-screen h-0 shadow-[0_0_200px_150px] shadow-[rgb(204,0,255)] dark:shadow-[#a955f7ea] fixed -z-2"></div>
+      <div className="w-screen h-0 shadow-[0_0_200px_150px] shadow-[rgb(174,0,255)] dark:shadow-[#a955f7ea] fixed -z-2"></div>
 
       {/* nav bar */}
 
@@ -26,14 +27,15 @@ export default function Home() {
               Login with Spotify
             </Button>
           </a>
-          {/* options button */}
-          <Menu className="text-white mr-4 max-sm:mr-2 w-6 h-auto cursor-pointer" />
+          {/* dark mode button */}
+              {/* <Menu className="text-white mr-4 max-sm:mr-2 w-6 h-auto cursor-pointer" /> */}
+               <Toggle/> 
         </div>
       </nav>
 
       {/* header line */}
 
-      <div className="mx-auto w-fit my-[80px] text-gray-700">
+      <div className="mx-auto w-fit my-[80px] text-gray-700 dark:text-white">
         <h1 className="text-6xl md:text-4xl sm:text-4xl max-sm:text-[6vw] flex flex-col justify-center items-start">
           <span>Get to know your</span>
           <div className="flex gap-2 items-center">
@@ -47,7 +49,7 @@ export default function Home() {
 
       <div className="grid grid-cols-2 gap-6 gap-y-8 mx-auto w-3/4 max-w-[800px] my-[20px] max-sm:grid-cols-1">
         {/* text line 1 */}
-        <div className="text-gray-700 min-lg:text-xl md:text-lg font-semibold text-justify flex flex-col justify-center max-sm:order-2">
+        <div className="text-gray-700 dark:text-white min-lg:text-xl md:text-lg font-semibold text-justify flex flex-col justify-center max-sm:order-2">
           <span className="text-2xl min-lg:text-4xl font-semibold mb-[2px]">Your music taste is one of a kind.</span>
           Dive into your stats, explore your most played tracks, discover hidden gems,
           and see how your listening habits evolve — all in one place, beautifully visualized
@@ -57,7 +59,7 @@ export default function Home() {
         {/* image 2 */}
         <div className="max-sm:order-3"><img className=" rounded-xl  dark:shadow-2xl  dark:shadow-slate-800" src="woman_listening_songs.jpg"></img></div>
         {/* text line 2 */}
-        <div className="text-gray-700 min-lg:text-xl md:text-lg font-semibold text-justify flex flex-col justify-center max-sm:order-4">
+        <div className="text-gray-700 dark:text-white min-lg:text-xl md:text-lg font-semibold text-justify flex flex-col justify-center max-sm:order-4">
           <span className="text-2xl min-lg:text-4xl font-semibold mb-[2px]">Connect your Spotify to begin.</span>
           We'll pull in your listening data securely and give you a fresh,
           fun look at your music story — no playlists touched, just insights delivered.
