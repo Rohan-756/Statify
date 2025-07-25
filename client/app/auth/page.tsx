@@ -43,14 +43,14 @@ const Page = () => {
     return (
         <>
             {/* shadow effect */}
-            <div className="w-full h-0 shadow-[0_0_300px_150px_rgba(0,0,0,0.5)] fixed -z-2 shadow-[#8a0cff] topShadow"></div>
+            <div className="w-full h-0 shadow-[0_0_300px_150px_rgba(0,0,0,0.5)] fixed -z-2 shadow-[rgb(174,0,255)] topShadow"></div>
 
             {/* message container */}
             <div className=" flex flex-col justify-center items-center w-screen h-screen">
                 {error ? (
                     <>
                         {/* in case of error */}
-                        <Frown className="text-slate-600 dark:text-white w-[100px] h-[100px] mb-[20px]"/>
+                        <Frown className="text-slate-600 dark:text-white w-[80px] h-[80px] mb-[20px]"/>
                         <div className="text-2xl font-semibold text-red-500 mb-3">Something went wrong</div>
                         <Link href="/">
                         <Button className="text-lg  font-semibold m-3 bg-[#1ed760] 

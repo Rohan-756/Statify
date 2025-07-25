@@ -3,7 +3,11 @@
 
 /* @custom-variant dark (&:is(.dark *)); */
 
-@custom-variant dark (&:where(.dark, .dark*));
+@custom-variant dark (&:where(.dark, .dark *));
+
+* {
+  transition: background-color 0.5s ease, color 0.5s ease;
+}
 
 @theme inline {
   --color-background: var(--background);
