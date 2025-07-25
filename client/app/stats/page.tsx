@@ -62,15 +62,51 @@
 // }
 
 
-import React from 'react'
+// import React, { useEffect } from 'react'
 
-const page = () => {
+// const page = () => {
+//   useEffect
+//   return (
+//     <>
+//       <div className="dark:text-blue-200 text-blue-900">page</div>
+//     </>
+
+//   )
+// }
+
+// export default page
+
+'use client'; // only needed in app router
+
+import { useEffect, useState } from 'react';
+
+export default function StatsPage() {
+const [tracks, setTracks] = useState([]);
+
+  useEffect(() => {
+    fetch('/api/top-tracks', {
+      method: 'GET',
+      credentials: 'include', // This tells the browser to send cookies
+    })
+      .then((res) => res.json())
+      .then((data) => {
+        console.log('Received from /testing:', data);
+        // const names= Object.values(data.items).map(item => item.name);
+        setTracks(data.items);
+      })
+      .catch((err) => {
+        console.error('Error fetching /testing:', err);
+      });
+  }, []);
+
   return (
-    <>
-      <div className="dark:text-blue-200 text-blue-900">page</div>
-    </>
-
-  )
+    <div>
+      <h1>Stats Page</h1>
+      {
+        tracks.map((track,index)=>(
+          <li key={index}>{`${track.name} ${track.artists.map(artist => artist.name)}`}</li>
+        ))
+      }
+    </div>
+  );
 }
-
-export default page
