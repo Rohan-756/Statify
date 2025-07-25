@@ -6,6 +6,7 @@ import './auth.css';
 import { Frown } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import Link from "next/link";
+import TopShadow from "@/components/TopShadow";
 
 const Page = () => {
     const searchParams = useSearchParams();
@@ -43,7 +44,8 @@ const Page = () => {
     return (
         <>
             {/* shadow effect */}
-            <div className="w-full h-0 shadow-[0_0_300px_150px_rgba(0,0,0,0.5)] fixed -z-2 shadow-[rgb(174,0,255)] topShadow"></div>
+            {/* <div className="w-full h-0 shadow-[0_0_300px_150px_rgba(0,0,0,0.5)] fixed -z-2 shadow-[rgb(174,0,255)] topShadow"></div> */}
+            <TopShadow className="topShadow"/>
 
             {/* message container */}
             <div className=" flex flex-col justify-center items-center w-screen h-screen">
@@ -51,7 +53,7 @@ const Page = () => {
                     <>
                         {/* in case of error */}
                         <Frown className="text-slate-600 dark:text-white w-[80px] h-[80px] mb-[20px]"/>
-                        <div className="text-2xl font-semibold text-red-500 mb-3">Something went wrong</div>
+                        <div className="text-2xl font-semibold text-red-500 mb-3 ERROR">Something went wrong</div>
                         <Link href="/">
                         <Button className="text-lg  font-semibold m-3 bg-[#1ed760] 
                         hover:bg-[#1db954] cursor-pointer rounded-full px-5">Click to go back</Button>

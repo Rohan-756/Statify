@@ -1,6 +1,8 @@
-import Toggle from "@/components/Toggle";
+import Footer from "@/components/Footer";
+import NavBar from "@/components/NavBar";
+import TopShadow from "@/components/TopShadow";
 import { Button } from "@/components/ui/button";
-import { ArrowRight, Menu, Moon, Sun } from "lucide-react";
+import { ArrowRight } from "lucide-react";
 
 export default function Home() {
   return (
@@ -8,29 +10,11 @@ export default function Home() {
 
       {/* top gradient */}
 
-      <div className="w-screen h-0 shadow-[0_0_200px_150px] shadow-[rgb(174,0,255)] dark:shadow-[#a955f7ea] fixed -z-2"></div>
+      <TopShadow/>
 
       {/* nav bar */}
 
-      <nav className="flex justify-between px-3 py-2 w-screen fixed top-0 backdrop-blur-lg bg-[rgb(255,255,255,0.35)] dark:bg-[rgba(0,0,0,0.60)]">
-        {/* logo */}
-        <div className="">
-          <img className="min-lg:w-21 md:w-19 sm:w-17 max-sm:w-15 h-auto mr-2" src="website-logo.png" />
-        </div>
-        {/* buttons */}
-        <div className="flex gap-4 justify-center items-center max-sm:gap-2">
-          {/* login button */}
-          <a href="http://localhost:4000/login">
-            <Button className=" font-semibold rounded-full 
-        bg-[#1ed760] hover:bg-[#1db954] cursor-pointer active:bg-[#1db954] flex 
-        justify-center items-center h-min max-sm:text-xs max-sm:px-[8px]">
-              Login with Spotify
-            </Button>
-          </a>
-          {/* dark mode button */}
-          <Toggle />
-        </div>
-      </nav>
+      <NavBar />
 
       {/* header line */}
 
@@ -76,42 +60,7 @@ export default function Home() {
 
       {/* footer */}
 
-      <footer className="bg-gray-800 w-1/1 h-auto text-gray-400 p-3 mt-20">
-        {/* logo */}
-        <img className="w-20 opacity-60" src="website-logo.png" />
-        {/* grid box */}
-        <div className="grid grid-cols-[5fr_1fr] max-sm:grid-cols-1 p-2">
-          {/* left half */}
-          <div>
-            <div className="text-sm">
-              © 2025 Statify · Built with ❤️ for music lovers · Not affiliated with Spotify
-            </div>
-            <div className="col-1 text-sm m-5 ml-0">
-              This app uses Spotify's public API to access user data.
-              We do not store or share your personal information.
-              Spotify is a registered trademark of Spotify AB.
-            </div>
-          </div>
-
-          {/* right half */}
-          <section className="flex justify-center max-sm:justify-start">
-            <div className="flex flex-col items-start justify-start text-sm">
-              <li className="list-none hover:underline cursor-pointer active:underline">
-                ‧ About
-              </li>
-              <li className="list-none hover:underline cursor-pointer active:underline">
-                <a href="https://github.com/Rohan-756/Statify" target="_blank"
-                  rel="noopener noreferrer">
-                  ‧ GitHub
-                </a>
-              </li>
-            </div>
-          </section>
-
-        </div>
-
-
-      </footer>
+      <Footer />
 
 
     </>
