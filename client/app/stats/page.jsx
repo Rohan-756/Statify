@@ -2,10 +2,12 @@
 
 import Footer from '@/components/Footer';
 import NavBar from '@/components/NavBar';
+import TopShadow from '@/components/TopShadow';
 import { useEffect, useState } from 'react';
 
 export default function StatsPage() {
-const [tracks, setTracks] = useState([]);
+  const [tracks, setTracks] = useState([]);
+  const [loading, setLoading] = useState(true)
 
   useEffect(() => {
     fetch('/api/top-tracks', {
@@ -16,24 +18,74 @@ const [tracks, setTracks] = useState([]);
       .then((data) => {
         console.log('Received from /testing:', data);
         // const names= Object.values(data.items).map(item => item.name);
-        setTracks(data.items);
+        setTracks(data.items || []);
+        console.log(tracks);
+        setLoading(false);
       })
       .catch((err) => {
         console.error('Error fetching /testing:', err);
+        setLoading(false);
       });
   }, []);
 
   return (
-    <div>
-      <div className="w-screen h-0 shadow-[0_0_200px_150px] shadow-[rgb(174,0,255)] dark:shadow-[#a955f7ea] fixed -z-2"></div>
-      <NavBar/>
-      <h1>Stats Page</h1>
-      {
-        tracks.map((track,index)=>(
-          <li key={index}>{`${track.name} ${track.artists.map(artist => artist.name)}`}</li>
-        ))
-      }
-      <Footer/>
-    </div>
+    <>
+
+      {/* top shdaow */}
+
+      <TopShadow />
+
+      {/* navbar */}
+
+      <NavBar login="hidden" />
+
+      {/* main body */}
+
+      <main className="">
+        {/* header line */}
+        <div className="mt-30 flex flex-col pl-3">
+          <span className="lg:text-5xl md:text-5xl sm:text-4xl max-sm:text-3xl font-semibold text-slate-800 dark:text-white">Your Music. Your Stats.</span>
+          <span className="lg:text-5xl md:text-5xl sm:text-4xl max-sm:text-3xl font-semibold text-slate-800 dark:text-white">All in one place.</span>
+        </div>
+        {/* output data */}
+        {/* top tracks heading*/}
+        <h1 className="m-3 mt-10 lg:text-3xl md:text-3xl sm:text-3xl max-sm:text-2xl text-slate-800 dark:text-white">Your Top Tracks.</h1>
+        {/* list of items */}
+        {
+          (!loading) ?
+            <>
+              <div className="mt-3">
+                {
+                  tracks.map((track, index) => (
+                    <li key={index} className="flex m-2 whitespace-nowrap items-center justify-start gap-4 bg-[rgba(215,215,215,0.4)] dark:bg-[rgba(68,68,68,0.5)] rounded-md p-2 backdrop-blur-md z-1">
+                      <div className="text-center min-w-5 ">{++index}</div>
+                      <img className="max-sm:w-[50px] rounded-sm" src={track.album.images[2].url} />
+                      <div className="flex flex-col overflow-hidden text-ellipsis">
+                        <span className="overflow-hidden text-ellipsis hover:underline active:underline cursor-pointer">
+                          <a href={track.external_urls.spotify} target="_blank">
+                            {track.name}
+                          </a>
+                        </span>
+                        <span className="overflow-hidden text-ellipsis">
+                          {track.artists.map(artist => artist.name)}
+                        </span></div>
+                    </li>
+                  ))
+                }
+              </div>
+            </>
+            : <>
+              <div className="flex flex-col items-center mt-8">
+                <div className="text-lg">Loading...</div>
+                <div className="text-lg">Please wait.</div>
+              </div>
+            </>
+        }
+
+        <div className="text-2xl font-semibold text-slate-800 dark:text-white w-full text-center my-8">That's It For Now!</div>
+      </main>
+
+      <Footer />
+    </>
   );
 }
