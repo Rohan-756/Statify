@@ -28,15 +28,14 @@ export default function Home() {
             </Button>
           </a>
           {/* dark mode button */}
-              {/* <Menu className="text-white mr-4 max-sm:mr-2 w-6 h-auto cursor-pointer" /> */}
-               <Toggle/> 
+          <Toggle />
         </div>
       </nav>
 
       {/* header line */}
 
       <div className="mx-auto w-fit my-[80px] text-gray-700 dark:text-white">
-        <h1 className="text-6xl md:text-4xl sm:text-4xl max-sm:text-[6vw] flex flex-col justify-center items-start">
+        <h1 className="text-8xl md:text-4xl sm:text-4xl max-sm:text-[6vw] flex flex-col justify-center items-start">
           <span>Get to know your</span>
           <div className="flex gap-2 items-center">
             <img className="w-auto h-15 md:h-12 sm:h-12 max-sm:h-[8vw]" src="spotify-logo.png" />

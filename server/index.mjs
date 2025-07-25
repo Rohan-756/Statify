@@ -99,7 +99,7 @@ app.get('/callback', async (req, res) => {
 // Get user's top tracks (pass access token in header as Bearer token)
 app.get('/top-tracks', async (req, res) => {
   const token = req.cookies["access_token"];
-  console.log(req.cookies)
+  // console.log(req.cookies)
 
   if (!token) {
     return res.status(401).json({ error: 'Access token missing in cookies' });
@@ -117,6 +117,13 @@ app.get('/top-tracks', async (req, res) => {
     res.status(400).json({ error: 'Failed to fetch top tracks', details: error.message });
   }
 });
+
+app.get('/testing', (req, res) => {
+  console.log('Cookies received:', req.cookies); // needs cookie-parser middleware
+
+  res.json({ message: 'Cookie received!', cookies: req.cookies });
+});
+
 
 app.listen(PORT, () => {
   console.log(`Server running at http://localhost:${PORT}`);
