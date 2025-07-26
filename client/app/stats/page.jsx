@@ -3,7 +3,7 @@
 import Footer from '@/components/Footer';
 import NavBar from '@/components/NavBar';
 import TopShadow from '@/components/TopShadow';
-import { useEffect, useState } from 'react';
+import {React, useState, useEffect} from "react";
 
 export default function StatsPage() {
   const [tracks, setTracks] = useState([]);
@@ -37,18 +37,18 @@ export default function StatsPage() {
 
       {/* navbar */}
 
-      <NavBar login="hidden" />
+      <NavBar login="hidden" className="" ></NavBar>
 
       {/* main body */}
 
       <main className="">
         {/* header line */}
-        <div className="mt-30 flex flex-col pl-3">
+        <div className="mt-30 flex flex-col px-3">
           <span className="lg:text-5xl md:text-5xl sm:text-4xl max-sm:text-3xl font-semibold text-slate-800 dark:text-white">Your Music. Your Stats.</span>
-          <span className="lg:text-5xl md:text-5xl sm:text-4xl max-sm:text-3xl font-semibold text-slate-800 dark:text-white">All in one place.</span>
+          <span className="lg:text-5xl md:text-5xl sm:text-4xl max-sm:text-3xl font-semibold text-slate-200 dark:text-[rgb(61,34,71)]">All in one place.</span>
         </div>
         {/* output data */}
-        {/* top tracks heading*/}
+        {/* top tracks heading */}
         <h1 className="m-3 mt-10 lg:text-3xl md:text-3xl sm:text-3xl max-sm:text-2xl text-slate-800 dark:text-white">Your Top Tracks.</h1>
         {/* list of items */}
         {
@@ -61,18 +61,20 @@ export default function StatsPage() {
                       <div className="text-center min-w-5 ">{++index}</div>
                       <img className="max-sm:w-[50px] rounded-sm" src={track.album.images[2].url} />
                       <div className="flex flex-col overflow-hidden text-ellipsis">
-                        <span className="overflow-hidden text-ellipsis hover:underline active:underline cursor-pointer">
-                          <a href={track.external_urls.spotify} target="_blank">
+                        <a href={track.external_urls.spotify} target="_blank" className="text-slate-900 dark:text-white">
+                          <span className="overflow-hidden text-ellipsis hover:underline active:underline cursor-pointer">
                             {track.name}
-                          </a>
-                        </span>
-                        <span className="overflow-hidden text-ellipsis">
-                          {track.artists.map(artist => artist.name)}
+                          </span>
+                        </a>
+                        <span className="overflow-hidden text-ellipsis text-slate-800 dark:text-white">
+                          {track.artists.map(artist => artist.name).join(", ")}
                         </span></div>
                     </li>
                   ))
                 }
               </div>
+              <div className="text-2xl font-semibold text-slate-800 dark:text-white
+               w-full text-center my-8">That's It For Now!</div>
             </>
             : <>
               <div className="flex flex-col items-center mt-8">
@@ -82,7 +84,7 @@ export default function StatsPage() {
             </>
         }
 
-        <div className="text-2xl font-semibold text-slate-800 dark:text-white w-full text-center my-8">That's It For Now!</div>
+
       </main>
 
       <Footer />

@@ -53,7 +53,7 @@ const Page = () => {
                     <>
                         {/* in case of error */}
                         <Frown className="text-slate-600 dark:text-white w-[80px] h-[80px] mb-[20px]"/>
-                        <div className="text-2xl font-semibold text-red-500 mb-3 ERROR">Something went wrong</div>
+                        <div className="text-2xl font-semibold text-red-500 mb-3 TRANS_OFF">Something went wrong</div>
                         <Link href="/">
                         <Button className="text-lg  font-semibold m-3 bg-[#1ed760] 
                         hover:bg-[#1db954] cursor-pointer rounded-full px-5">Click to go back</Button>
