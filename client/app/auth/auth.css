@@ -21,6 +21,29 @@
     }
 }
 
+.topShadow.dark {
+    width: 100vw;
+    height: 0px;
+    background-color: black;
+    border-radius: 10px;
+    box-shadow: 0 0 200px 150px #a955f7ea;
+    animation: pulse 4s ease-in-out infinite;
+}
+
+@keyframes pulse {
+    0% {
+        box-shadow: 0 0 160px 110px #a955f7ea;
+    }
+
+    50% {
+        box-shadow: 0 0 200px 150px #a955f7ea;
+    }
+
+    100% {
+        box-shadow: 0 0 160px 110px #a955f7ea;
+    }
+}
+
 .spinning-disk {
     width: 80px;
     height: 80px;

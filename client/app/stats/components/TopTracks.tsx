@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react'
-import "./stats.css"
+import "../stats.css"
 
 type Artist = {
     name: string;
@@ -49,7 +49,7 @@ const TopTracks = () => {
     return (
         <>
             {/* top tracks heading */}
-            <h1 className="m-3 mt-10 lg:text-3xl md:text-3xl sm:text-3xl max-sm:text-2xl text-slate-800 dark:text-white">Your Top Tracks.</h1>
+            <h1 className="m-3 lg:text-3xl md:text-3xl sm:text-3xl max-sm:text-2xl text-slate-800 dark:text-white">Your Top Tracks.</h1>
             {/* list of items */}
             {
                 (!loading) ?
@@ -74,12 +74,12 @@ const TopTracks = () => {
                             }
                         </div>
                         <div className="text-2xl font-semibold text-slate-800 dark:text-white
-               w-full text-center my-8">That's It For Now!</div>
+               w-full text-center mb-8 mt-15">That's It For Now!</div>
                     </>
                     : <>
                         <div className="flex flex-col items-center  mt-8 w-full h-screen">
                             <div className="spinning-disk"></div>
-                            <div className="text-xl">Loading...</div>
+                            <div className="text-xl text-slate-800 dark:text-white">Loading...</div>
                         </div>
                     </>
             }
