@@ -24,7 +24,7 @@ type Track = {
     external_urls: ExternalUrls;
 };
 
-const TopTracks = () => {
+const TopTracks = ({ timeRange }: { timeRange: string }) => {
     const [tracks, setTracks] = useState<Track[]>([]);
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState(false);

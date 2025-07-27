@@ -16,7 +16,7 @@ type Artist = {
     genres: string[];
 }
 
-const TopArtists = () => {
+const TopArtists = ({ timeRange }: { timeRange: string }) => {
     const [artists, setArtists] = useState<Artist[]>([]);
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState(false);
