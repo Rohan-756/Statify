@@ -31,7 +31,10 @@ const TopArtists = () => {
                 return res.json();
             })
             .then((data) => {
-                setArtists(data.items || []);
+                if (!data?.items || !Array.isArray(data.items) || data.items.length === 0) {
+                    throw new Error("Invalid or empty data");
+                }
+                setArtists(data.items);
                 setLoading(false);
                 setError(false);
             })
@@ -80,7 +83,7 @@ const TopArtists = () => {
                                             {artist.name}
                                         </span>
                                     </a>
-                                    <span className="text-sm text-slate-700 dark:text-gray-300">
+                                    <span className="text-sm text-slate-700 dark:text-gray-300 overflow-hidden text-ellipsis">
                                         {artist.genres?.join(", ").toUpperCase() || "No genres available"}
                                     </span>
                                 </div>
