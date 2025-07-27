@@ -31,7 +31,7 @@ export default function StatsPage() {
         <TabsContainer/>
       </main>
 
-      <Footer />
+      <Footer className=""/>
     </>
   );
 }
