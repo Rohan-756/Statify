@@ -98,6 +98,7 @@ app.get('/callback', async (req, res) => {
 
 // Get user's top tracks (pass access token in header as Bearer token)
 app.get('/top-tracks', async (req, res) => {
+  const timeRange = req.query.time_range || 'medium_term';
   const token = req.cookies["access_token"];
   // console.log(req.cookies)
 
@@ -106,7 +107,8 @@ app.get('/top-tracks', async (req, res) => {
   }
 
   try {
-    const response = await axios.get('https://api.spotify.com/v1/me/top/tracks', {
+    const response = await axios.get(`https://api.spotify.com/v1/me/top/tracks?time_range=${timeRange}`
+      , {
       headers: {
         Authorization: `Bearer ${token}`,
       },
@@ -129,7 +131,7 @@ app.get('/top-artists', async (req, res) => {
 
   try {
     const response = await axios.get(`https://api.spotify.com/v1/me/top/artists?time_range=${timeRange}`
-      ,{
+      , {
       headers: {
         Authorization: `Bearer ${token}`,
       },

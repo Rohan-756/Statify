@@ -164,7 +164,7 @@ const TopArtists = ({ timeRange }: { timeRange: string }) => {
             </h1>
 
             {loading ? (
-                <div className="flex flex-col items-center mt-8 w-full h-screen">
+                <div className="flex flex-col items-center justify-center mt-8 w-full h-[50vh]">
                     <div className="spinning-disk"></div>
                     <div className="text-xl text-slate-800 dark:text-white">Loading...</div>
                 </div>
