@@ -55,7 +55,7 @@ import TopArtists from "./TopArtists";
 const timeRangeLabels = {
   short_term: "Past Month",
   medium_term: "6 Months",
-  long_term: "Lifetime",
+  long_term: "All Time",
 };
 
 const getNextRange = (current: string): string => {
@@ -76,7 +76,7 @@ export default function TabsContainer() {
     <div className="w-full max-w-2xl mx-auto mt-10">
       {/* Tabs */}
       <div className="flex justify-center items-center py-1 w-min backdrop-blur-2xl
-       bg-[rgba(228,228,228,0.45)] dark:bg-[rgba(0,0,0,0.5)] z-2 mx-auto
+       bg-[rgba(228,228,228,0.6)] dark:bg-[rgba(0,0,0,0.5)] z-2 mx-auto
        rounded-lg sticky lg:top-18 md:top-17 sm:top-16 max-sm:top-14.5">
 
         {["Top Tracks", "Top Artists"].map((tab) => (

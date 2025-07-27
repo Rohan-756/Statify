@@ -195,8 +195,12 @@ const TopTracks = ({ timeRange }: TopTracksProps) => {
                         {tracks.map((track, index) => (
                             <li
                                 key={index}
-                                className="flex m-2 whitespace-nowrap items-center justify-start gap-4 bg-[rgba(215,215,215,0.4)] dark:bg-[rgba(68,68,68,0.5)] rounded-md p-2 backdrop-blur-md z-1"
-                            >
+                                className={`flex m-2 whitespace-nowrap items-center justify-start gap-4 
+                                rounded-md p-2 backdrop-blur-md z-1 
+                                ${index===0 ? "bg-[rgba(212,175,55,0.8)] dark:bg-[rgb(212,175,55,0.7)]" 
+                                : index===1 ? "bg-[rgb(170,169,173,0.85)] dark:bg-[rgb(170,169,173,0.7)]"
+                                : index===2 ? "bg-[rgba(110,78,32,0.8)] dark:bg-[rgb(110,78,32,0.7)]"
+                                : "bg-[rgba(215,215,215,0.4)] dark:bg-[rgba(68,68,68,0.5)]"}`}>
                                 <div className="text-center min-w-5">{index + 1}</div>
                                 <img
                                     className="w-[64px] h-[64px] max-sm:w-[50px] max-sm:h-[50px] rounded-sm"
