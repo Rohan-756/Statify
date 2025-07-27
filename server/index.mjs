@@ -118,6 +118,27 @@ app.get('/top-tracks', async (req, res) => {
   }
 });
 
+app.get('/top-artists', async (req, res) => {
+  const token = req.cookies["access_token"];
+  // console.log(req.cookies)
+
+  if (!token) {
+    return res.status(401).json({ error: 'Access token missing in cookies' });
+  }
+
+  try {
+    const response = await axios.get('https://api.spotify.com/v1/me/top/artists', {
+      headers: {
+        Authorization: `Bearer ${token}`,
+      },
+    });
+
+    res.json(response.data);
+  } catch (error) {
+    res.status(400).json({ error: 'Failed to fetch top artists', details: error.message });
+  }
+});
+
 app.get('/testing', (req, res) => {
   console.log('Cookies received:', req.cookies); // needs cookie-parser middleware
 

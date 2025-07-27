@@ -2,6 +2,7 @@
 
 import { useState } from "react";
 import TopTracks from "./TopTracks";
+import TopArtists from "./TopArtists";
 
 export default function TabsContainer() {
   const [activeTab, setActiveTab] = useState("Top Tracks");
@@ -34,7 +35,7 @@ export default function TabsContainer() {
           <TopTracks />
         }
         {activeTab === "Top Artists" &&
-          <p>Your music stats will appear here.</p>
+          <TopArtists/>
         }
         {activeTab === "Top Albums" &&
           <p>Playlists go here.</p>
