@@ -1,103 +1,231 @@
-import React, { useEffect, useState } from 'react';
-import "../stats.css";
+// import React, { useEffect, useState } from 'react';
+// import "../stats.css";
+// import { Button } from '@/components/ui/button';
+
+// type Artist = {
+//     name: string;
+// };
+
+// type AlbumImage = {
+//     url: string;
+// };
+
+// type Album = {
+//     images: AlbumImage[];
+// };
+
+// type ExternalUrls = {
+//     spotify: string;
+// };
+
+// type Track = {
+//     name: string;
+//     artists: Artist[];
+//     album: Album;
+//     external_urls: ExternalUrls;
+// };
+
+// const TopTracks = ({ timeRange }: { timeRange: string }) => {
+//     const [tracks, setTracks] = useState<Track[]>([]);
+//     const [loading, setLoading] = useState(true);
+//     const [error, setError] = useState(false);
+
+//     useEffect(() => {
+//         fetch('/api/top-tracks', {
+//             method: 'GET',
+//             credentials: 'include',
+//         })
+//             .then((res) => res.json())
+//             .then((data) => {
+//                 if (!data?.items || !Array.isArray(data.items) || data.items.length === 0) {
+//                     throw new Error("No tracks found.");
+//                 }
+//                 setTracks(data.items);
+//                 setError(false);
+//             })
+//             .catch((err) => {
+//                 console.error('Error fetching /api/top-tracks:', err);
+//                 setError(true);
+//             })
+//             .finally(() => {
+//                 setLoading(false);
+//             });
+//     }, []);
+
+//     if (loading) {
+//         return (
+//             <div className="flex flex-col items-center mt-8 w-full h-screen">
+//                 <div className="spinning-disk"></div>
+//                 <div className="text-xl text-slate-800 dark:text-white">Loading...</div>
+//             </div>
+//         );
+//     }
+
+//     if (error) {
+//         return (
+//             <div className="flex flex-col items-center mt-8 w-full h-screen">
+//                 <div className="text-xl font-semibold text-red-500 TRANS_OFF">Failed to load top tracks.</div>
+//                 <div className="text-slate-800 dark:text-white text-lg font-semibold">Please login again</div>
+//                 <a href="/">
+//                     <Button className="rounded-full bg-[#1ed760] hover:bg-[#1db954]
+//                     active:bg-[#1db954] cursor-pointer">Login again</Button>
+//                 </a>
+//             </div>
+//         );
+//     }
+
+//     return (
+//         <>
+//             <h1 className="m-3 lg:text-3xl md:text-3xl sm:text-3xl max-sm:text-2xl text-slate-800 dark:text-white">Your Top Tracks.</h1>
+
+//             <div className="mt-3">
+//                 {tracks.map((track, index) => (
+//                     <li key={index} className="flex m-2 whitespace-nowrap items-center justify-start gap-4 bg-[rgba(215,215,215,0.4)] dark:bg-[rgba(68,68,68,0.5)] rounded-md p-2 backdrop-blur-md z-1">
+//                         <div className="text-center min-w-5">{index + 1}</div>
+//                         <img
+//                             className="w-[64px] h-[64px] max-sm:w-[50px] max-sm:h-[50px] rounded-sm"
+//                             src={track.album.images[1]?.url || track.album.images[0]?.url}
+//                             alt="Album Art"
+//                         />
+//                         <div className="flex flex-col overflow-hidden text-ellipsis">
+//                             <a href={track.external_urls.spotify} target="_blank" rel="noopener noreferrer" className="text-slate-900 dark:text-white">
+//                                 <span className="font-medium overflow-hidden text-ellipsis hover:underline active:underline cursor-pointer">
+//                                     {track.name}
+//                                 </span>
+//                             </a>
+//                             <span className="overflow-hidden text-ellipsis text-slate-800 dark:text-white">
+//                                 {track.artists.map(artist => artist.name).join(", ")}
+//                             </span>
+//                         </div>
+//                     </li>
+//                 ))}
+//             </div>
+
+//             <div className="text-2xl font-semibold text-slate-800 dark:text-white w-full text-center mb-8 mt-15">
+//                 That's It For Now!
+//             </div>
+//         </>
+//     );
+// };
+
+// export default TopTracks;
+
+
+"use client"
+
+import React, { useEffect, useState } from 'react'
+import "../stats.css"
+import { Button } from '@/components/ui/button';
 
 type Artist = {
     name: string;
-};
+}
 
 type AlbumImage = {
     url: string;
-};
+}
 
 type Album = {
     images: AlbumImage[];
-};
+}
 
 type ExternalUrls = {
     spotify: string;
-};
+}
 
 type Track = {
     name: string;
     artists: Artist[];
     album: Album;
     external_urls: ExternalUrls;
-};
+}
 
-const TopTracks = ({ timeRange }: { timeRange: string }) => {
+type TopTracksProps = {
+    timeRange: "short_term" | "medium_term" | "long_term";
+}
+
+const TopTracks = ({ timeRange }: TopTracksProps) => {
     const [tracks, setTracks] = useState<Track[]>([]);
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState(false);
 
     useEffect(() => {
-        fetch('/api/top-tracks', {
+        fetch(`/api/top-tracks?time_range=${timeRange}`, {
             method: 'GET',
             credentials: 'include',
         })
             .then((res) => res.json())
             .then((data) => {
-                if (!data?.items || !Array.isArray(data.items) || data.items.length === 0) {
-                    throw new Error("No tracks found.");
+                if (!Array.isArray(data.items) || data.items.length === 0) {
+                    throw new Error("Invalid or empty data");
                 }
                 setTracks(data.items);
+                setLoading(false);
                 setError(false);
             })
             .catch((err) => {
-                console.error('Error fetching /api/top-tracks:', err);
-                setError(true);
-            })
-            .finally(() => {
+                console.error('Error fetching top tracks:', err);
                 setLoading(false);
+                setError(true);
             });
-    }, []);
-
-    if (loading) {
-        return (
-            <div className="flex flex-col items-center mt-8 w-full h-screen">
-                <div className="spinning-disk"></div>
-                <div className="text-xl text-slate-800 dark:text-white">Loading...</div>
-            </div>
-        );
-    }
-
-    if (error) {
-        return (
-            <div className="flex flex-col items-center mt-8 w-full h-screen">
-                <div className="text-xl font-semibold text-red-500 dark:text-red-400">Failed to load top tracks.</div>
-            </div>
-        );
-    }
+    }, [timeRange]);
 
     return (
         <>
-            <h1 className="m-3 lg:text-3xl md:text-3xl sm:text-3xl max-sm:text-2xl text-slate-800 dark:text-white">Your Top Tracks.</h1>
-
-            <div className="mt-3">
-                {tracks.map((track, index) => (
-                    <li key={index} className="flex m-2 whitespace-nowrap items-center justify-start gap-4 bg-[rgba(215,215,215,0.4)] dark:bg-[rgba(68,68,68,0.5)] rounded-md p-2 backdrop-blur-md z-1">
-                        <div className="text-center min-w-5">{index + 1}</div>
-                        <img
-                            className="w-[64px] h-[64px] max-sm:w-[50px] max-sm:h-[50px] rounded-sm"
-                            src={track.album.images[1]?.url || track.album.images[0]?.url}
-                            alt="Album Art"
-                        />
-                        <div className="flex flex-col overflow-hidden text-ellipsis">
-                            <a href={track.external_urls.spotify} target="_blank" rel="noopener noreferrer" className="text-slate-900 dark:text-white">
-                                <span className="font-medium overflow-hidden text-ellipsis hover:underline active:underline cursor-pointer">
-                                    {track.name}
-                                </span>
-                            </a>
-                            <span className="overflow-hidden text-ellipsis text-slate-800 dark:text-white">
-                                {track.artists.map(artist => artist.name).join(", ")}
-                            </span>
-                        </div>
-                    </li>
-                ))}
-            </div>
-
-            <div className="text-2xl font-semibold text-slate-800 dark:text-white w-full text-center mb-8 mt-15">
-                That's It For Now!
-            </div>
+            <h1 className="m-3 lg:text-3xl md:text-3xl sm:text-3xl max-sm:text-2xl text-slate-800 dark:text-white">
+                Your Top Tracks.
+            </h1>
+            {loading ? (
+                <div className="flex flex-col items-center mt-8 w-full h-screen">
+                    <div className="spinning-disk"></div>
+                    <div className="text-xl text-slate-800 dark:text-white">Loading...</div>
+                </div>
+            ) : error ? (
+                <div className="flex flex-col items-center mt-8 w-full h-screen">
+                    <div className="text-xl font-semibold text-red-500 TRANS_OFF">Failed to load top tracks.</div>
+                    <div className="text-slate-800 dark:text-white text-lg font-semibold">Please login again.</div>
+                    <a href="/api/login">
+                    <Button className="rounded-full bg-[#1ed760] hover:bg-[#1db954]
+                    active:bg-[#1db954] cursor-pointer mt-4 ">Login again</Button>
+                </a>
+                </div>
+            ) : (
+                <>
+                    <div className="mt-3">
+                        {tracks.map((track, index) => (
+                            <li
+                                key={index}
+                                className="flex m-2 whitespace-nowrap items-center justify-start gap-4 bg-[rgba(215,215,215,0.4)] dark:bg-[rgba(68,68,68,0.5)] rounded-md p-2 backdrop-blur-md z-1"
+                            >
+                                <div className="text-center min-w-5">{index + 1}</div>
+                                <img
+                                    className="w-[64px] h-[64px] max-sm:w-[50px] max-sm:h-[50px] rounded-sm"
+                                    src={track.album.images[1]?.url || track.album.images[0]?.url || ""}
+                                    alt="Album Art"
+                                />
+                                <div className="flex flex-col overflow-hidden text-ellipsis">
+                                    <a
+                                        href={track.external_urls.spotify}
+                                        target="_blank"
+                                        rel="noopener noreferrer"
+                                        className="text-slate-900 dark:text-white"
+                                    >
+                                        <span className="font-medium overflow-hidden text-ellipsis hover:underline active:underline cursor-pointer">
+                                            {track.name}
+                                        </span>
+                                    </a>
+                                    <span className="overflow-hidden text-ellipsis text-slate-800 dark:text-white">
+                                        {track.artists.map(artist => artist.name).join(", ")}
+                                    </span>
+                                </div>
+                            </li>
+                        ))}
+                    </div>
+                    <div className="text-2xl font-semibold text-slate-800 dark:text-white w-full text-center mb-8 mt-15">
+                        That's It For Now!
+                    </div>
+                </>
+            )}
         </>
     );
 };

@@ -93,8 +93,8 @@ export default function TabsContainer() {
         ))}
         <button
           onClick={handleTimeRangeToggle}
-          className="py-1 px-2 mx-4 whitespace-nowrap h-min min-w-25.5 max-sm:min-w-23 max-sm:mx-2 max-sm:text-sm text-center font-medium
-          text-[rgb(79,0,115)] dark:text-[#1ed760] border-l-[rgba(255,255,255,0.4)] dark:border-l-[rgba(124,124,124,0.5)] border-l-2"
+          className="py-1 px-4 mx-4 mr-0 whitespace-nowrap h-min min-w-29.5 max-sm:min-w-27 max-sm:mx-2 max-sm:mr-0 max-sm:text-sm text-center font-medium
+          text-[rgb(73,0,106)] dark:text-[#1ed760] border-[rgba(255,255,255,0.4)] dark:border-[rgba(124,124,124,0.5)] border-l-2"
         >
           {timeRangeLabels[timeRange]}
         </button>

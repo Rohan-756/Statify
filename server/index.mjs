@@ -119,6 +119,7 @@ app.get('/top-tracks', async (req, res) => {
 });
 
 app.get('/top-artists', async (req, res) => {
+  const timeRange = req.query.time_range || 'medium_term';
   const token = req.cookies["access_token"];
   // console.log(req.cookies)
 
@@ -127,7 +128,8 @@ app.get('/top-artists', async (req, res) => {
   }
 
   try {
-    const response = await axios.get('https://api.spotify.com/v1/me/top/artists', {
+    const response = await axios.get(`https://api.spotify.com/v1/me/top/artists?time_range=${timeRange}`
+      ,{
       headers: {
         Authorization: `Bearer ${token}`,
       },
