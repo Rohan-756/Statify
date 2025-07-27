@@ -1,6 +1,7 @@
 import React from 'react'
 import { Button } from './ui/button'
 import Toggle from './Toggle'
+import Link from 'next/link'
 
 const NavBar = (props:any) => {
   return (
@@ -9,8 +10,10 @@ const NavBar = (props:any) => {
 
     <nav className="flex justify-between px-3 py-2 w-screen fixed top-0 backdrop-blur-lg bg-[rgb(255,255,255,0.35)] dark:bg-[rgba(0,0,0,0.60)] z-2">
         {/* logo */}
-        <div className="">
+        <div className="cursor-pointer">
+          <Link href="/">
           <img className="min-lg:w-21 md:w-19 sm:w-17 max-sm:w-15 h-auto mr-2" src="website-logo.png" />
+          </Link>
         </div>
         {/* buttons */}
         <div className="flex gap-4 justify-center items-center max-sm:gap-2">

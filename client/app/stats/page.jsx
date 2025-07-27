@@ -21,7 +21,7 @@ export default function StatsPage() {
 
       {/* main body */}
 
-      <main className="">
+      <main className="w-full h-full">
         {/* header line */}
         <div className="w-full max-w-2xl mt-30 flex flex-col px-3 items-start justify-center mx-auto">
           <span className="lg:text-5xl md:text-5xl sm:text-4xl max-sm:text-3xl font-semibold text-slate-800 dark:text-white">Your Music. Your Stats.</span>

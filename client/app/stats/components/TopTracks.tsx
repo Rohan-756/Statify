@@ -59,10 +59,10 @@ const TopTracks = () => {
                                 tracks.map((track, index) => (
                                     <li key={index} className="flex m-2 whitespace-nowrap items-center justify-start gap-4 bg-[rgba(215,215,215,0.4)] dark:bg-[rgba(68,68,68,0.5)] rounded-md p-2 backdrop-blur-md z-1">
                                         <div className="text-center min-w-5 ">{++index}</div>
-                                        <img className="w-[64px] h-[64px] max-sm:w-[50px] rounded-sm" src={track.album.images[1].url} />
+                                        <img className="w-[64px] h-[64px] max-sm:w-[50px] max-sm:h-[50px] rounded-sm" src={track.album.images[1].url} />
                                         <div className="flex flex-col overflow-hidden text-ellipsis">
                                             <a href={track.external_urls.spotify} target="_blank" className="text-slate-900 dark:text-white">
-                                                <span className="overflow-hidden text-ellipsis hover:underline active:underline cursor-pointer">
+                                                <span className="font-medium overflow-hidden text-ellipsis hover:underline active:underline cursor-pointer">
                                                     {track.name}
                                                 </span>
                                             </a>
