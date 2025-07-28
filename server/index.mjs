@@ -17,12 +17,35 @@ app.use(express.json());
 const PORT = process.env.PORT;
 const CLIENT_ID = process.env.CLIENT_ID;
 const CLIENT_SECRET = process.env.CLIENT_SECRET;
-const REDIRECT_URI='http://127.0.0.1:3000/auth';
+const REDIRECT_URI = 'http://127.0.0.1:3000/auth';
 
 app.use((req, res, next) => {
   console.log('Cookies:', req.cookies); // Logs cookies from each request
   next();
 });
+
+async function refreshAccessToken(refresh_token) {
+  const data = querystring.stringify({
+    grant_type: 'refresh_token',
+    refresh_token: refresh_token,
+  });
+
+  const headers = {
+    headers: {
+      'Content-Type': 'application/x-www-form-urlencoded',
+      Authorization:
+        'Basic ' + Buffer.from(CLIENT_ID + ':' + CLIENT_SECRET).toString('base64'),
+    },
+  };
+
+  try {
+    const response = await axios.post('https://accounts.spotify.com/api/token', data, headers);
+    return response.data.access_token;
+  } catch (error) {
+    console.error('Failed to refresh token:', error.message);
+    return null;
+  }
+}
 
 
 app.get('/', (req, res) => {
@@ -99,7 +122,22 @@ app.get('/callback', async (req, res) => {
 // Get user's top tracks (pass access token in header as Bearer token)
 app.get('/top-tracks', async (req, res) => {
   const timeRange = req.query.time_range || 'medium_term';
-  const token = req.cookies["access_token"];
+
+  let token = req.cookies["access_token"];
+  const refreshToken = req.cookies["refresh_token"];
+
+  if (!token && refreshToken) {
+    token = await refreshAccessToken(refreshToken);
+    if (token) {
+      res.cookie("access_token", token, {
+        httpOnly: true,
+        secure: process.env.NODE_ENV === "production",
+        sameSite: "lax",
+        maxAge: 3600 * 1000
+      });
+    }
+  }
+
   // console.log(req.cookies)
 
   if (!token) {
@@ -109,10 +147,10 @@ app.get('/top-tracks', async (req, res) => {
   try {
     const response = await axios.get(`https://api.spotify.com/v1/me/top/tracks?limit=50&time_range=${timeRange}`
       , {
-      headers: {
-        Authorization: `Bearer ${token}`,
-      },
-    });
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      });
 
     res.json(response.data);
   } catch (error) {
@@ -122,7 +160,22 @@ app.get('/top-tracks', async (req, res) => {
 
 app.get('/top-artists', async (req, res) => {
   const timeRange = req.query.time_range || 'medium_term';
-  const token = req.cookies["access_token"];
+
+  let token = req.cookies["access_token"];
+  const refreshToken = req.cookies["refresh_token"];
+
+  if (!token && refreshToken) {
+    token = await refreshAccessToken(refreshToken);
+    if (token) {
+      res.cookie("access_token", token, {
+        httpOnly: true,
+        secure: process.env.NODE_ENV === "production",
+        sameSite: "lax",
+        maxAge: 3600 * 1000
+      });
+    }
+  }
+
   // console.log(req.cookies)
 
   if (!token) {
@@ -132,10 +185,10 @@ app.get('/top-artists', async (req, res) => {
   try {
     const response = await axios.get(`https://api.spotify.com/v1/me/top/artists?limit=50&time_range=${timeRange}`
       , {
-      headers: {
-        Authorization: `Bearer ${token}`,
-      },
-    });
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      });
 
     res.json(response.data);
   } catch (error) {

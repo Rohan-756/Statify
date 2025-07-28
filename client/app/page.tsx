@@ -14,7 +14,7 @@ export default function Home() {
 
       {/* nav bar */}
 
-      <NavBar />
+      <NavBar login="true"/>
 
       {/* header line */}
 

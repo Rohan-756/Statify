@@ -17,7 +17,7 @@ export default function StatsPage() {
 
       {/* navbar */}
 
-      <NavBar login="hidden"/>
+      <NavBar login="false"/>
 
       {/* main body */}
 
@@ -31,7 +31,7 @@ export default function StatsPage() {
         <TabsContainer/>
       </main>
 
-      <Footer className=""/>
+      <Footer />
     </>
   );
 }
