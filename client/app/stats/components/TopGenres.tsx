@@ -191,11 +191,11 @@ const TopArtists = ({ timeRange }: { timeRange: string }) => {
                                 : "bg-[rgba(210,210,210,0.5)] dark:bg-[rgba(68,68,68,0.5)]"}`}>
                                 <div className="text-center min-w-5">{index + 1}</div>
                                 <img
-                                    className="w-[64px] h-[64px] max-sm:w-[50px] max-sm:h-[50px] rounded-xs"
+                                    className="w-[64px] h-[64px] max-sm:w-[50px] max-sm:h-[50px] rounded-sm"
                                     src={artist.images?.[2]?.url || artist.images?.[0]?.url || ""}
                                     alt={artist.name}
                                 />
-                                <div className="flex flex-col overflow-hidden text-ellipsis flex-1">
+                                <div className="flex flex-col overflow-hidden text-ellipsis">
                                     <a
                                         href={artist.external_urls.spotify}
                                         target="_blank"

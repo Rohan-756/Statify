@@ -172,7 +172,7 @@ const TopTracks = ({ timeRange }: TopTracksProps) => {
 
     return (
         <>
-            <h1 className="m-3 lg:text-3xl md:text-3xl sm:text-3xl max-sm:text-2xl text-slate-800 dark:text-white">
+            <h1 className="ml-2 m-3 lg:text-3xl md:text-3xl sm:text-3xl max-sm:text-2xl text-slate-800 dark:text-white">
                 Your Top Tracks.
             </h1>
             {loading ? (
@@ -203,11 +203,11 @@ const TopTracks = ({ timeRange }: TopTracksProps) => {
                                 : "bg-[rgba(210,210,210,0.5)] dark:bg-[rgba(68,68,68,0.5)]"}`}>
                                 <div className="text-center min-w-5">{index + 1}</div>
                                 <img
-                                    className="w-[64px] h-[64px] max-sm:w-[50px] max-sm:h-[50px] rounded-sm"
+                                    className="w-[64px] h-[64px] max-sm:w-[50px] max-sm:h-[50px] rounded-xs"
                                     src={track.album.images[1]?.url || track.album.images[0]?.url || ""}
                                     alt="Album Art"
                                 />
-                                <div className="flex flex-col overflow-hidden text-ellipsis">
+                                <div className="flex flex-col overflow-hidden text-ellipsis flex-1">
                                     <a
                                         href={track.external_urls.spotify}
                                         target="_blank"

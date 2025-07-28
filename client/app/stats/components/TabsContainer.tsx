@@ -51,6 +51,7 @@
 import { useState } from "react";
 import TopTracks from "./TopTracks";
 import TopArtists from "./TopArtists";
+import TopGenres from "./TopGenres";
 
 const timeRangeLabels = {
   short_term: "Past Month",
@@ -79,13 +80,13 @@ export default function TabsContainer() {
        bg-[rgba(228,228,228,0.6)] dark:bg-[rgba(0,0,0,0.5)] z-2 mx-auto
        rounded-lg sticky lg:top-18 md:top-17 sm:top-16 max-sm:top-14.5">
 
-        {["Top Tracks", "Top Artists"].map((tab) => (
+        {["Top Tracks", "Top Artists","Top Genres"].map((tab) => (
           <button
             key={tab}
             onClick={() => setActiveTab(tab)}
-            className={`py-1 px-2 mx-4 font-medium whitespace-nowrap min-h-9 max-sm:mx-2 max-sm:text-sm 
+            className={`py-1 px-2 mx-4 font-medium whitespace-nowrap min-h-9 max-sm:mx-2 max-sm:text-xs cursor-pointer 
               ${activeTab === tab
-              ? "text-slate-800 dark:text-white pt-1.5 border-b-3 border-white dark:border-[#1ed760]"
+              ? "text-slate-800 dark:text-white pt-1.5 border-b-3 border-white dark:border-[#1ed760] max-sm:pt-1.75"
               : "text-slate-800 dark:text-white"
               }`}>
             {tab}
@@ -93,7 +94,7 @@ export default function TabsContainer() {
         ))}
         <button
           onClick={handleTimeRangeToggle}
-          className="py-1 px-4 mx-4 mr-0 whitespace-nowrap h-min min-w-29.5 max-sm:min-w-27 max-sm:mx-2 max-sm:mr-0 max-sm:text-sm text-center font-medium
+          className="py-1 px-4 mx-4 mr-0 whitespace-nowrap h-min min-w-29.5 max-sm:min-w-27 max-sm:mx-2 max-sm:mr-0 max-sm:text-xs text-center font-medium
           text-[rgb(73,0,106)] dark:text-[#1ed760] border-[rgba(255,255,255,0.4)] dark:border-[rgba(124,124,124,0.5)] border-l-2"
         >
           {timeRangeLabels[timeRange]}
@@ -104,6 +105,7 @@ export default function TabsContainer() {
       <div className="mt-4 p-2 pt-1">
         {activeTab === "Top Tracks" && <TopTracks timeRange={timeRange} />}
         {activeTab === "Top Artists" && <TopArtists timeRange={timeRange} />}
+        {activeTab === "Top Genres" && <TopGenres timeRange={timeRange} />}
       </div>
     </div>
   );
