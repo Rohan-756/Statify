@@ -83,11 +83,11 @@ export default function TabsContainer() {
           <button
             key={tab}
             onClick={() => setActiveTab(tab)}
-            className={`py-1 px-2 mx-4 font-medium whitespace-nowrap min-h-9 max-sm:mx-2 max-sm:text-sm ${activeTab === tab
-              ? "text-slate-800 dark:text-white border-b-3 border-white dark:border-[#1ed760]"
+            className={`py-1 px-2 mx-4 font-medium whitespace-nowrap min-h-9 max-sm:mx-2 max-sm:text-sm 
+              ${activeTab === tab
+              ? "text-slate-800 dark:text-white pt-1.5 border-b-3 border-white dark:border-[#1ed760]"
               : "text-slate-800 dark:text-white"
-              }`}
-          >
+              }`}>
             {tab}
           </button>
         ))}

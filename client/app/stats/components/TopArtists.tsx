@@ -188,7 +188,7 @@ const TopArtists = ({ timeRange }: { timeRange: string }) => {
                                 ${index===0 ? "bg-[rgba(212,175,55,0.8)] dark:bg-[rgb(212,175,55,0.7)]" 
                                 : index===1 ? "bg-[rgb(170,169,173,0.85)] dark:bg-[rgb(170,169,173,0.7)]"
                                 : index===2 ? "bg-[rgba(110,78,32,0.8)] dark:bg-[rgb(110,78,32,0.7)]"
-                                : "bg-[rgba(215,215,215,0.4)] dark:bg-[rgba(68,68,68,0.5)]"}`}>
+                                : "bg-[rgba(210,210,210,0.5)] dark:bg-[rgba(68,68,68,0.5)]"}`}>
                                 <div className="text-center min-w-5">{index + 1}</div>
                                 <img
                                     className="w-[64px] h-[64px] max-sm:w-[50px] max-sm:h-[50px] rounded-sm"
@@ -206,8 +206,9 @@ const TopArtists = ({ timeRange }: { timeRange: string }) => {
                                             {artist.name}
                                         </span>
                                     </a>
-                                    <span className="text-sm text-slate-700 dark:text-gray-300 overflow-hidden text-ellipsis">
-                                        {artist.genres?.join(", ").toUpperCase() || "No genres available"}
+                                    <span className="text-sm text-slate-800 dark:text-gray-200 overflow-hidden text-ellipsis">
+                                        {artist.genres?.map(genre => genre.charAt(0).toUpperCase() + genre.slice(1)).join(", ")
+                                         || "No genres available"}
                                     </span>
                                 </div>
                             </li>
