@@ -30,10 +30,11 @@ const NavBar = (props: any) => {
               </a>
             ) : (
               //profile button
-              <Link href="/profile">
-                <Button className={` font-semibold rounded-full flex
+              <Link href="/">
+                <Button className={`py-1 pl-[4px] font-semibold rounded-full flex
         bg-[#1ed760] hover:bg-[#1db954] cursor-pointer active:bg-[#1db954] 
-        justify-center items-center h-min max-sm:text-xs max-sm:px-[8px]`}>
+        justify-center items-center h-min max-sm:text-xs max-sm:px-[4px] max-sm:pr-[8px]`}>
+          <img className=" rounded-full w-full max-h-8 max-sm:max-h-6 aspect-square" src="woman_listening_songs.jpg"></img>
                   Your Profile
                 </Button>
               </Link>
