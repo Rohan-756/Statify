@@ -19,7 +19,7 @@ export default function Home() {
       {/* header line */}
 
       <div className="mx-auto w-fit my-[80px] text-slate-800 dark:text-white">
-        <h1 className="text-8xl md:text-4xl sm:text-4xl max-sm:text-[8vw] flex flex-col justify-center items-start">
+        <h1 className="text-8xl md:text-4xl sm:text-4xl max-sm:text-[7vw] flex flex-col justify-center items-start">
           <span>Get to know your</span>
           <div className="flex gap-2 items-center">
             <img className="w-auto h-15 md:h-12 sm:h-12 max-sm:h-[10vw]" src="spotify-logo.png" />

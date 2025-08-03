@@ -20,7 +20,7 @@ const CLIENT_SECRET = process.env.CLIENT_SECRET;
 const REDIRECT_URI = 'http://127.0.0.1:3000/auth';
 
 app.use((req, res, next) => {
-  console.log('Cookies:', req.cookies); // Logs cookies from each request
+  // console.log('Cookies:', req.cookies); // Logs cookies from each request
   next();
 });
 
@@ -193,6 +193,76 @@ app.get('/top-artists', async (req, res) => {
     res.json(response.data);
   } catch (error) {
     res.status(400).json({ error: 'Failed to fetch top artists', details: error.message });
+  }
+});
+
+// app.get('/profile', async (req, res) => {
+//   let token = req.cookies["access_token"];
+//   const refreshToken = req.cookies["refresh_token"];
+
+//   if (!token && refreshToken) {
+//     token = await refreshAccessToken(refreshToken);
+//     if (token) {
+//       res.cookie("access_token", token, {
+//         httpOnly: true,
+//         secure: process.env.NODE_ENV === "production",
+//         sameSite: "lax",
+//         maxAge: 3600 * 1000
+//       });
+//     }
+//   }
+
+//   if (!token) {
+//     return res.status(401).json({ error: 'Access token missing in cookies' });
+//   }
+
+//   try {
+//     const response = await axios.get('https://api.spotify.com/v1/me', {
+//       headers: { Authorization: `Bearer ${token}` }
+//     });
+
+//     res.json(response.data); // ✅ make sure it's JSON
+//   } catch (error) {
+//     return res.status(400).json({ error: 'Failed to fetch profile', details: error.message });
+//   }
+// });
+
+app.get('/profile', async (req, res) => {
+  console.log("Incoming request to /profile");
+  console.log("Cookies:", req.cookies);
+
+  let token = req.cookies["access_token"];
+  const refreshToken = req.cookies["refresh_token"];
+
+  // Try refreshing if token is missing
+  if (!token && refreshToken) {
+    console.log("Access token missing, trying to refresh...");
+    token = await refreshAccessToken(refreshToken);
+    if (token) {
+      res.cookie("access_token", token, {
+        httpOnly: true,
+        secure: process.env.NODE_ENV === "production",
+        sameSite: "lax",
+        maxAge: 3600 * 1000
+      });
+    } else {
+      console.log("Failed to refresh access token.");
+    }
+  }
+
+  if (!token) {
+    return res.status(401).json({ error: 'Access token missing in cookies' });
+  }
+
+  try {
+    const response = await axios.get('https://api.spotify.com/v1/me', {
+      headers: { Authorization: `Bearer ${token}` }
+    });
+
+    res.json(response.data);
+  } catch (error) {
+    console.log("Spotify API call failed:", error.response?.data || error.message);
+    return res.status(400).json({ error: 'Failed to fetch profile', details: error.message });
   }
 });
 
