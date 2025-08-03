@@ -17,7 +17,7 @@ const NavBar = (props: any) => {
           </Link>
         </div>
         {/* buttons */}
-        <div className="flex gap-4 justify-center items-center min-sm:mr-2">
+        <div className="flex gap-4 justify-center items-center mr-4">
           {/* login button */}
           {
             props.login==="true" ? (

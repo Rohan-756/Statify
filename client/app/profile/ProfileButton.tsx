@@ -1,14 +1,26 @@
 "use client"
 
 import { Avatar } from '@/components/ui/avatar'
-import { Button } from '@/components/ui/button'
 import { AvatarFallback, AvatarImage } from '@radix-ui/react-avatar'
 import Link from 'next/link'
 import React, { useEffect, useState } from 'react'
 
 const ProfileButton = () => {
-  const [username, setUsername] = useState("Username")
+  const [initials, setInitials] = useState("User")
   const [profilePic, setProfilePic] = useState("/default_pfp.jpg") // fallback image
+
+  function getInitials(username: string): string {
+    if (!username) return "??";
+  
+    const words = username.trim().split(" ");
+  
+    if (words.length === 1) {
+      return words[0][0].toUpperCase();
+    }
+  
+    return (words[0][0] + words[1][0]).toUpperCase();
+  }
+  
 
   useEffect(() => {
     const fetchUserProfile = async () => {
@@ -26,7 +38,7 @@ const ProfileButton = () => {
         }
 
         const data = await res.json();
-        setUsername(data.display_name || "Username");
+        setInitials( getInitials(data.display_name) || "User");
         setProfilePic(data.images?.[0]?.url || "default.jpg");
       } catch (error) {
         console.error("Error fetching user profile:", error);
@@ -45,7 +57,7 @@ const ProfileButton = () => {
               src={profilePic}
               alt="Profile" />
           <AvatarFallback className="flex items-center justify-center aspect-square text-white bg-blue-800">
-            BN</AvatarFallback>
+            {initials}</AvatarFallback>
         </Avatar>
     </Link>
   )
