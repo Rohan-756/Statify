@@ -20,9 +20,9 @@ const Toggle = () => {
             }
         }>
             {isDark ?
-                <Moon className="text-white mr-4 max-sm:mr-0 w-6 h-auto cursor-pointer" />
+                <Moon className="text-white w-6 h-auto cursor-pointer" />
                 :
-                <Sun className="text-white mr-4 max-sm:mr-0 w-6 h-auto cursor-pointer" />
+                <Sun className="text-white w-6 h-auto cursor-pointer" />
             }
         </button>
     );

@@ -30,7 +30,7 @@ export default function TabsContainer() {
       {/* Tabs */}
       <div className="flex justify-center items-center py-1 w-min backdrop-blur-2xl
        bg-[rgba(228,228,228,0.6)] dark:bg-[rgba(0,0,0,0.5)] z-2 mx-auto
-       rounded-lg sticky lg:top-18 md:top-17 sm:top-16 max-sm:top-14.5">
+       rounded-lg sticky lg:top-18 md:top-17 sm:top-17 max-sm:top-17">
 
         {["Top Tracks", "Top Artists","Top Genres"].map((tab) => (
           <button

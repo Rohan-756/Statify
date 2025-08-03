@@ -13,11 +13,11 @@ const NavBar = (props: any) => {
         {/* logo */}
         <div className="cursor-pointer">
           <Link href="/">
-            <img className="min-lg:w-21 md:w-19 sm:w-17 max-sm:w-15 h-auto mr-2" src="website-logo.png" />
+            <img className="min-lg:w-21 w-19 h-auto mr-2" src="website-logo.png" />
           </Link>
         </div>
         {/* buttons */}
-        <div className="flex gap-4 justify-center items-center max-sm:gap-2">
+        <div className="flex gap-4 justify-center items-center min-sm:mr-2">
           {/* login button */}
           {
             props.login==="true" ? (

@@ -28,11 +28,14 @@ const Footer = () => {
               <li className="list-none hover:underline cursor-pointer active:underline">
                 ‧ About
               </li>
-              <li className="list-none hover:underline cursor-pointer active:underline">
+              {/* <li className="list-none hover:underline cursor-pointer active:underline">
                 <a href="https://github.com/Rohan-756/Statify" target="_blank"
                   rel="noopener noreferrer">
                   ‧ GitHub
                 </a>
+              </li> */}
+              <li className="list-none hover:underline cursor-pointer active:underline">
+                ‧ Privacy Policy
               </li>
             </div>
           </section>
