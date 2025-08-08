@@ -1,13 +1,13 @@
 import NavBar from '@/components/NavBar'
+import "./profile.css"
 import React from 'react'
 
 const page = () => {
   return (
     <>
-    <NavBar/>
-    <div className="text-black dark:text-white mt-20">
-        this is the profile page
-    </div>
+    <div className="top-shadow -z-10"></div>
+    <NavBar stats="true"/>
+    
     </>
   )
 }

@@ -31,7 +31,19 @@ const NavBar = (props: any) => {
               </a>
             ) : (
               //profile button
-              <ProfileButton/>
+              <>
+              {props.stats ? 
+                <Link href="/stats">
+                  <Button className="rounded-full hover:bg-[#1db954] bg-[#1ed760]
+                   max-sm:text-xs max-sm:px-2 cursor-pointer">
+                    Back to Stats
+                  </Button>
+                </Link>
+                :
+                <ProfileButton/>
+              }
+              
+              </>
             )
           }
           {/* dark mode button */}

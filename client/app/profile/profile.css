@@ -1,0 +1,33 @@
+.top-shadow {
+    position: fixed;
+    width: 100vw;
+    height: 0px;
+    z-index: -10;
+  }
+  
+  .top-shadow::before {
+    content: '';
+    position: fixed;
+    inset: 0;
+    height: 250px;
+    width: 100%;
+    background: linear-gradient(270deg, #ff3388, #ce6d7d, #d69c8a, #997fd6, #824be0, #a04ab3);
+    background-size: 500% 500%;
+    animation: gradientFlow 12s ease infinite;
+    opacity: 1;
+    filter: blur(100px);
+    pointer-events: none;
+  }
+  
+  @keyframes gradientFlow {
+    0% {
+      background-position: 0% 50%;
+    }
+    50% {
+      background-position: 100% 50%;
+    }
+    100% {
+      background-position: 0% 50%;
+    }
+  }
+  
