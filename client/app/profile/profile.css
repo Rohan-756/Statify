@@ -2,7 +2,7 @@
     position: fixed;
     width: 100vw;
     height: 0px;
-    z-index: -10;
+    z-index: -1;
   }
   
   .top-shadow::before {
@@ -11,7 +11,7 @@
     inset: 0;
     height: 250px;
     width: 100%;
-    background: linear-gradient(270deg, #ff3388, #ce6d7d, #d69c8a, #997fd6, #824be0, #a04ab3);
+    background: linear-gradient(270deg, #d6075d, #e15068, #f28766,#f3d298,#79a6f3, #5f24e8, #5e07f6, #8c14a7);
     background-size: 500% 500%;
     animation: gradientFlow 12s ease infinite;
     opacity: 1;
