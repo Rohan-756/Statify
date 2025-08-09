@@ -42,7 +42,7 @@
 //                 :
 //                 <ProfileButton/>
 //               }
-              
+
 //               </>
 //             )
 //           }
@@ -59,14 +59,20 @@
 
 // SEO
 
+type NavBarProps = {
+  login?: boolean | string;
+  stats?: boolean | string;
+}
+
 
 import React from 'react'
 import { Button } from './ui/button'
 import Toggle from './Toggle'
 import Link from 'next/link'
+import Image from 'next/image';
 import ProfileButton from '@/app/profile/ProfileButton'
 
-const NavBar = (props: any) => {
+const NavBar = (props: NavBarProps) => {
   return (
     <>
       {/* navbar */}
@@ -78,12 +84,14 @@ const NavBar = (props: any) => {
         {/* logo */}
         <div className="cursor-pointer">
           <Link href="/" aria-label="Go to homepage">
-            <img
+            <Image
+              src="/website-logo.png"
+              alt="Website logo"
+              width={84}
+              height={84}
               className="min-lg:w-21 w-19 h-auto mr-2"
-              src="website-logo.png"
-              alt="Statify logo"
-              loading="lazy"
-            />
+            />   
+              
           </Link>
         </div>
 
