@@ -141,7 +141,7 @@ export default function Home() {
               Connect your Spotify to begin.
             </h2>
             <p>
-              We'll pull in your listening data securely and give you a fresh,
+              We&apos;ll pull in your listening data securely and give you a fresh,
               fun look at your music story — no playlists touched, just insights delivered.
             </p>
             <a href="http://localhost:4000/login" aria-label="Connect your Spotify account to start viewing stats">

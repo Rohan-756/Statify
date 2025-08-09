@@ -219,7 +219,7 @@ const Page = () => {
     return (
       <>
         <Head>
-          <title>Loading Profile | Spotify Stats</title>
+          <title>Loading Profile | Statify</title>
           <meta name="description" content="Loading your Spotify profile details and statistics." />
         </Head>
         <div className="p-4 text-center text-lg font-semibold">
@@ -233,7 +233,7 @@ const Page = () => {
     return (
       <>
         <Head>
-          <title>Profile Not Found | Spotify Stats</title>
+          <title>Profile Not Found | Statify</title>
           <meta name="description" content="We couldn't load your Spotify profile. Please try again later." />
         </Head>
         <div className="p-4 text-center text-red-500 font-semibold">
@@ -246,12 +246,12 @@ const Page = () => {
   return (
     <>
       <Head>
-        <title>{`${profile.display_name} | Spotify Stats Profile`}</title>
+        <title>{`${profile.display_name} | Statify Profile`}</title>
         <meta
           name="description"
           content={`View ${profile.display_name}'s Spotify profile, including followers, email, and direct access to their Spotify page.`}
         />
-        <meta property="og:title" content={`${profile.display_name} | Spotify Stats`} />
+        <meta property="og:title" content={`${profile.display_name} | Statify`} />
         <meta
           property="og:description"
           content={`Spotify profile of ${profile.display_name}. Followers: ${profile.followers?.total || 0}.`}
@@ -259,7 +259,7 @@ const Page = () => {
         <meta property="og:image" content={profile.images?.[0]?.url || "/default-profile.png"} />
         <meta property="og:type" content="profile" />
         <meta name="twitter:card" content="summary_large_image" />
-        <meta name="twitter:title" content={`${profile.display_name} | Spotify Stats`} />
+        <meta name="twitter:title" content={`${profile.display_name} | Statify`} />
         <meta
           name="twitter:description"
           content={`Spotify profile of ${profile.display_name} with ${profile.followers?.total || 0} followers.`}
@@ -316,7 +316,7 @@ const Page = () => {
           onClick={handleLogout}
           className="rounded-full w-1/2 min-w-30 max-w-2xs mt-10 block mx-auto text-white
           font-medium cursor-pointer bg-red-600 hover:bg-[rgb(255,3,3)] TRANS_OFF"
-          aria-label="Log out from Spotify Stats"
+          aria-label="Log out from Statify"
         >
           Logout
         </Button>

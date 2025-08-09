@@ -234,7 +234,7 @@ const TopTracks = ({ timeRange }: TopTracksProps) => {
                     </ol>
 
                     <div className="text-2xl font-semibold text-slate-800 dark:text-white w-full text-center mb-8 mt-12">
-                        That's It For Now!
+                        That&apos;s It For Now!
                     </div>
                 </>
             )}

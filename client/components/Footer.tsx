@@ -54,6 +54,7 @@
 
 
 import React from 'react'
+import Image from "next/image";
 
 const Footer = () => {
   return (
@@ -65,12 +66,8 @@ const Footer = () => {
         aria-label="Website footer"
       >
         {/* logo */}
-        <img 
-          className="w-20 opacity-60" 
-          src="website-logo.png" 
-          alt="Statify website logo" 
-          loading="lazy"
-        />
+        <Image src="/website-logo.png"
+         alt="Website logo" width={80} height={80}/>
         {/* grid box */}
         <div className="grid grid-cols-[5fr_1fr] max-sm:grid-cols-1 p-2">
           
@@ -80,7 +77,7 @@ const Footer = () => {
               © 2025 Statify · Built with ❤️ for music lovers · Not affiliated with Spotify
             </div>
             <div className="col-1 text-sm m-5 ml-0">
-              This app uses Spotify's public API to access user data.
+              This app uses Spotify&apos;s public API to access user data.
               We do not store or share your personal information.
               Spotify is a registered trademark of Spotify AB.
             </div>
