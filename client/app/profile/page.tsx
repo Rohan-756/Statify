@@ -149,6 +149,7 @@ import "./profile.css";
 import React, { useEffect, useState } from 'react';
 import { Button } from '@/components/ui/button';
 import Link from 'next/link';
+import Image from 'next/image';
 import { useRouter } from 'next/navigation';
 import Head from 'next/head';
 
@@ -276,7 +277,7 @@ const Page = () => {
         >
           <div className="w-min h-min flex justify-center items-center">
             {profile.images?.[0]?.url ? (
-              <img
+              <Image
                 className="rounded-full aspect-square w-32 max-sm:w-22 object-cover ring-1 ring-slate-300"
                 src={profile.images[0].url}
                 alt={`${profile.display_name}'s Spotify profile picture`}

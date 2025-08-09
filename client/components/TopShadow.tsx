@@ -15,10 +15,13 @@
 
 // SEO
 
+type TopShadowProps ={
+  className?: string;
+}
 
 import React from 'react'
 
-const TopShadow = (props:any) => {
+const TopShadow = (props: TopShadowProps) => {
   return (
     <>
     <div className={`w-screen h-0 shadow-[0_0_200px_150px]
