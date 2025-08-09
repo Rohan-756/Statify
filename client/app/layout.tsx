@@ -53,6 +53,16 @@ export const metadata: Metadata = {
   title: "Spotify Stats | Your Music Trends & Listening Insights",
   description:
     "Track your Spotify listening habits, top artists, tracks, and genres. See your music trends and share your Spotify profile stats with friends.",
+  keywords: [
+    "Spotify stats",
+    "Spotify top tracks",
+    "Spotify top artists",
+    "Spotify genres",
+    "music analytics",
+    "Spotify listening trends",
+    "Spotify statistics"
+  ],
+  authors: [{ name: "Your Name or Brand" }],
   metadataBase: new URL("https://yourdomain.com"), // change to your domain
   openGraph: {
     title: "Spotify Stats | Your Music Trends & Listening Insights",
@@ -62,10 +72,10 @@ export const metadata: Metadata = {
     siteName: "Spotify Stats",
     images: [
       {
-        url: "/og-image.png", // add an Open Graph image
+        url: "https://yourdomain.com/og-image.png", // Absolute URL for social sharing
         width: 1200,
         height: 630,
-        alt: "Spotify Stats Dashboard Preview",
+        alt: "Preview of Spotify Stats dashboard showing music insights",
       },
     ],
     locale: "en_US",
@@ -75,9 +85,9 @@ export const metadata: Metadata = {
     card: "summary_large_image",
     title: "Spotify Stats | Your Music Trends & Listening Insights",
     description:
-      "Analyze your Spotify listening history and share your stats.",
-    images: ["/og-image.png"],
-    creator: "@yourTwitterHandle",
+      "Analyze your Spotify listening history, see your top artists, tracks, and genres, and share your stats with friends.",
+    images: ["https://yourdomain.com/og-image.png"], // Absolute URL
+    creator: "@yourTwitterHandle", // Replace with your handle
   },
   icons: {
     icon: "/favicon.ico",
@@ -103,3 +113,4 @@ export default function RootLayout({
     </html>
   );
 }
+
