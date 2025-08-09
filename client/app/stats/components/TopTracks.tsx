@@ -221,11 +221,11 @@ const TopTracks = ({ timeRange }: TopTracksProps) => {
                                         href={track.external_urls.spotify}
                                         target="_blank"
                                         rel="noopener noreferrer"
-                                        className="text-slate-900 dark:text-white font-medium truncate hover:underline"
+                                        className="text-slate-900 dark:text-white font-medium truncate hover:underline w-min"
                                     >
                                         {track.name}
                                     </a>
-                                    <span className="text-slate-700 dark:text-gray-300 text-sm truncate">
+                                    <span className="text-slate-700 dark:text-gray-300 text-sm truncate w-min">
                                         {track.artists.map(artist => artist.name).join(", ")}
                                     </span>
                                 </div>

@@ -224,14 +224,16 @@ const TopArtists = ({ timeRange }: { timeRange: string }) => {
                     href={artist.external_urls.spotify}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="text-slate-800 dark:text-white"
+                    className="text-slate-800 dark:text-white w-min"
                     title={`Listen to ${artist.name} on Spotify`}
                   >
-                    <span className="font-medium overflow-hidden text-ellipsis hover:underline active:underline cursor-pointer">
+                    <span className="font-medium overflow-hidden text-ellipsis hover:underline active:underline
+                    cursor-pointer">
                       {artist.name}
                     </span>
                   </a>
-                  <span className="text-sm text-slate-800 dark:text-gray-200 overflow-hidden text-ellipsis">
+                  <span className="text-sm text-slate-800 dark:text-gray-200 overflow-hidden text-ellipsis
+                  w-min">
                     {artist.genres
                       ?.map(
                         (genre) => genre.charAt(0).toUpperCase() + genre.slice(1)

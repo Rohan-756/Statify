@@ -134,7 +134,7 @@ export default function AuthPage() {
         {error ? (
           <>
             <Frown className="text-slate-600 dark:text-white w-[80px] h-[80px] mb-[20px]" />
-            <div className="text-2xl font-semibold text-red-500 mb-3">
+            <div className="text-2xl font-semibold text-red-500 mb-3 TRANS_OFF">
               Something went wrong
             </div>
             <Link href="/">

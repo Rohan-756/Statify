@@ -132,11 +132,7 @@ export default function DonutChart({ genreCount }: Props) {
 
   return (
     <div className="w-full max-w-2xl mx-auto my-10 flex flex-col items-center">
-      {/* Visible heading for users */}
-      <h2 className="text-xl font-semibold mb-4 text-slate-800 dark:text-white">
-        Top 10 Genres
-      </h2>
-
+      
       {/* Accessible heading for SEO (hidden visually) */}
       <h2 className="sr-only">Top 10 Music Genres by Play Count</h2>
 
