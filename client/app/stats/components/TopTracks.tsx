@@ -225,7 +225,7 @@ const TopTracks = ({ timeRange }: TopTracksProps) => {
                                     >
                                         {track.name}
                                     </a>
-                                    <span className="text-slate-700 dark:text-gray-300 text-sm truncate w-min">
+                                    <span className="text-slate-800 dark:text-gray-300 text-sm truncate w-min">
                                         {track.artists.map(artist => artist.name).join(", ")}
                                     </span>
                                 </div>
