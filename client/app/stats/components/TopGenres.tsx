@@ -120,7 +120,7 @@ type Artist = {
 };
 
 const TopGenres = ({ timeRange }: { timeRange: string }) => {
-    const [artists, setArtists] = useState<Artist[]>([]);
+    // const [artists, setArtists] = useState<Artist[]>([]);
     const [genreCount, setGenreCount] = useState<Record<string, number>>({});
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState(false);
@@ -139,7 +139,7 @@ const TopGenres = ({ timeRange }: { timeRange: string }) => {
                     throw new Error("Invalid or empty data");
                 }
 
-                setArtists(data.items);
+                // setArtists(data.items);
                 setLoading(false);
                 setError(false);
 

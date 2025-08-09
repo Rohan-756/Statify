@@ -128,6 +128,7 @@
 import React, { useEffect, useState } from 'react';
 import "../stats.css";
 import { Button } from '@/components/ui/button';
+import Image from 'next/image';
 
 type Artist = { name: string };
 type AlbumImage = { url: string };
@@ -211,7 +212,7 @@ const TopTracks = ({ timeRange }: TopTracksProps) => {
                                 <div className="text-center w-6 font-semibold text-slate-700 dark:text-gray-200">
                                     {index + 1}
                                 </div>
-                                <img
+                                <Image
                                     className="w-[64px] h-[64px] max-sm:w-[50px] max-sm:h-[50px] rounded-md shadow-sm"
                                     src={track.album.images[1]?.url || track.album.images[0]?.url || ""}
                                     alt={`${track.name} Album Art`}
