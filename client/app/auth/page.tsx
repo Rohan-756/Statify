@@ -82,7 +82,7 @@
 export const dynamic = 'force-dynamic';
 
 
-import React, { useEffect, useState } from "react";
+import React, { Suspense, useEffect, useState } from "react";
 import { useRouter, useSearchParams } from "next/navigation";
 import "./auth.css";
 import { Frown } from "lucide-react";
@@ -90,7 +90,7 @@ import { Button } from "@/components/ui/button";
 import Link from "next/link";
 import TopShadow from "@/components/TopShadow";
 
-export default function AuthPage() {
+function AuthPage() {
   const searchParams = useSearchParams();
   const router = useRouter();
   const [error, setError] = useState(false);
@@ -158,4 +158,12 @@ export default function AuthPage() {
       </div>
     </>
   );
+}
+
+export default function Auth(){
+  return (
+    <Suspense>
+      <AuthPage/>
+    </Suspense>
+  )
 }

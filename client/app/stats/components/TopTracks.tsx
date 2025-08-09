@@ -216,6 +216,10 @@ const TopTracks = ({ timeRange }: TopTracksProps) => {
                                     className="w-[64px] h-[64px] max-sm:w-[50px] max-sm:h-[50px] rounded-md shadow-sm"
                                     src={track.album.images[1]?.url || track.album.images[0]?.url || ""}
                                     alt={`${track.name} Album Art`}
+                                    width={64}
+                                    height={64}
+                                    loading={index > 2 ? "lazy" : "eager"}
+                                    priority={index < 3}
                                 />
                                 <div className="flex flex-col overflow-hidden flex-1">
                                     <a
