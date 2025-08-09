@@ -266,6 +266,36 @@ app.get('/profile', async (req, res) => {
 //   }
 // });
 
+// Check login status + return user profile if logged in
+app.get("/me", async (req, res) => {
+  const token = req.cookies["access_token"];
+  if (!token) {
+    return res.json({ loggedIn: false });
+  }
+
+  try {
+    const response = await axios.get("https://api.spotify.com/v1/me", {
+      headers: { Authorization: `Bearer ${token}` },
+    });
+
+    return res.json({
+      loggedIn: true,
+      profile: response.data,
+    });
+  } catch (err) {
+    console.error("Error fetching user profile:", err.message);
+    return res.json({ loggedIn: false });
+  }
+});
+
+// Logout route
+app.post("/logout", (req, res) => {
+  res.clearCookie("access_token");
+  res.clearCookie("refresh_token");
+  return res.json({ success: true });
+});
+
+
 app.get('/testing', (req, res) => {
   console.log('Cookies received:', req.cookies); // needs cookie-parser middleware
 
