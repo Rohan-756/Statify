@@ -196,47 +196,11 @@ app.get('/top-artists', async (req, res) => {
   }
 });
 
-// app.get('/profile', async (req, res) => {
-//   let token = req.cookies["access_token"];
-//   const refreshToken = req.cookies["refresh_token"];
-
-//   if (!token && refreshToken) {
-//     token = await refreshAccessToken(refreshToken);
-//     if (token) {
-//       res.cookie("access_token", token, {
-//         httpOnly: true,
-//         secure: process.env.NODE_ENV === "production",
-//         sameSite: "lax",
-//         maxAge: 3600 * 1000
-//       });
-//     }
-//   }
-
-//   if (!token) {
-//     return res.status(401).json({ error: 'Access token missing in cookies' });
-//   }
-
-//   try {
-//     const response = await axios.get('https://api.spotify.com/v1/me', {
-//       headers: { Authorization: `Bearer ${token}` }
-//     });
-
-//     res.json(response.data); // ✅ make sure it's JSON
-//   } catch (error) {
-//     return res.status(400).json({ error: 'Failed to fetch profile', details: error.message });
-//   }
-// });
-
 app.get('/profile', async (req, res) => {
-  console.log("Incoming request to /profile");
-  console.log("Cookies:", req.cookies);
-
   let token = req.cookies["access_token"];
   const refreshToken = req.cookies["refresh_token"];
 
-  // Try refreshing if token is missing
   if (!token && refreshToken) {
-    console.log("Access token missing, trying to refresh...");
     token = await refreshAccessToken(refreshToken);
     if (token) {
       res.cookie("access_token", token, {
@@ -245,8 +209,6 @@ app.get('/profile', async (req, res) => {
         sameSite: "lax",
         maxAge: 3600 * 1000
       });
-    } else {
-      console.log("Failed to refresh access token.");
     }
   }
 
@@ -259,12 +221,50 @@ app.get('/profile', async (req, res) => {
       headers: { Authorization: `Bearer ${token}` }
     });
 
-    res.json(response.data);
+    res.json(response.data); // ✅ make sure it's JSON
   } catch (error) {
-    console.log("Spotify API call failed:", error.response?.data || error.message);
     return res.status(400).json({ error: 'Failed to fetch profile', details: error.message });
   }
 });
+
+// app.get('/profile', async (req, res) => {
+//   console.log("Incoming request to /profile");
+//   console.log("Cookies:", req.cookies);
+
+//   let token = req.cookies["access_token"];
+//   const refreshToken = req.cookies["refresh_token"];
+
+//   // Try refreshing if token is missing
+//   if (!token && refreshToken) {
+//     console.log("Access token missing, trying to refresh...");
+//     token = await refreshAccessToken(refreshToken);
+//     if (token) {
+//       res.cookie("access_token", token, {
+//         httpOnly: true,
+//         secure: process.env.NODE_ENV === "production",
+//         sameSite: "lax",
+//         maxAge: 3600 * 1000
+//       });
+//     } else {
+//       console.log("Failed to refresh access token.");
+//     }
+//   }
+
+//   if (!token) {
+//     return res.status(401).json({ error: 'Access token missing in cookies' });
+//   }
+
+//   try {
+//     const response = await axios.get('https://api.spotify.com/v1/me', {
+//       headers: { Authorization: `Bearer ${token}` }
+//     });
+
+//     res.json(response.data);
+//   } catch (error) {
+//     console.log("Spotify API call failed:", error.response?.data || error.message);
+//     return res.status(400).json({ error: 'Failed to fetch profile', details: error.message });
+//   }
+// });
 
 app.get('/testing', (req, res) => {
   console.log('Cookies received:', req.cookies); // needs cookie-parser middleware
