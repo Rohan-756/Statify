@@ -5,7 +5,7 @@
 // import React, { useEffect, useState } from 'react';
 // import { Button } from '@/components/ui/button';
 // import Link from 'next/link';
-// import ProfileButton from './ProfileButton';
+// import { useRouter } from 'next/navigation';
 
 // interface SpotifyProfile {
 //   display_name: string;
@@ -19,13 +19,21 @@
 // const Page = () => {
 //   const [profile, setProfile] = useState<SpotifyProfile | null>(null);
 //   const [loading, setLoading] = useState(true);
+//   const router = useRouter();
 
 //   useEffect(() => {
 //     const fetchProfile = async () => {
 //       try {
-//         // Fetch profile info
 //         const res = await fetch("/api/profile", { credentials: "include" });
+
+//         if (res.status === 401) {
+//           // Not logged in — redirect to login page
+//           router.push("/");
+//           return;
+//         }
+
 //         if (!res.ok) throw new Error("Failed to fetch profile");
+
 //         const data = await res.json();
 //         setProfile(data);
 //       } catch (err) {
@@ -36,7 +44,24 @@
 //     };
 
 //     fetchProfile();
-//   }, []);
+//   }, [router]);
+
+//   const handleLogout = async () => {
+//     try {
+//       const res = await fetch("/api/logout", {
+//         method: "POST",
+//         credentials: "include"
+//       });
+
+//       if (res.ok) {
+//         router.push("/");
+//       } else {
+//         console.error("Logout failed");
+//       }
+//     } catch (err) {
+//       console.error("Error logging out:", err);
+//     }
+//   };
 
 //   if (loading) {
 //     return (
@@ -60,7 +85,7 @@
 //       <NavBar stats="true" />
 //       <div className="p-2 mt-24">
 //         <div className="max-w-2xl mx-auto p-4 grid grid-cols-[1fr_2fr] gap-4 backdrop-blur-xl 
-//         bg-[rgba(210,210,210,0.4)] dark:bg-[rgba(84,83,83,0.4)] rounded-2xl">
+//         bg-[rgba(210,210,210,0.4)] dark:bg-[rgba(84,83,83,0.4)] rounded-2xl px-8">
 //           <div className="w-min h-min flex justify-center items-center">
 //             <img
 //               className="rounded-full aspect-square w-32 max-sm:w-22 object-cover ring-1 ring-slate-300"
@@ -85,10 +110,14 @@
 //             </Link>
 //           </div>
 //         </div>
-//           <Button variant="destructive"
-//           className="rounded-full w-1/2 min-w-30 mt-10 block mx-auto
-//           font-medium max-w-2xs">Logout</Button>
-//         </div>
+//         <Button
+//           onClick={handleLogout}
+//           className="rounded-full w-1/2 min-w-30 max-w-2xs mt-10 block mx-auto text-white
+//           font-medium cursor-pointer bg-red-600 hover:bg-[rgb(255,3,3)] TRANS_OFF"
+//         >
+//           Logout
+//         </Button>
+//       </div>
 //     </>
 //   );
 // };
@@ -125,7 +154,6 @@ const Page = () => {
         const res = await fetch("/api/profile", { credentials: "include" });
 
         if (res.status === 401) {
-          // Not logged in — redirect to login page
           router.push("/");
           return;
         }
@@ -161,6 +189,14 @@ const Page = () => {
     }
   };
 
+  const getInitials = (name: string) => {
+    return name
+      .split(" ")
+      .map(n => n[0]?.toUpperCase())
+      .slice(0, 2)
+      .join("");
+  };
+
   if (loading) {
     return (
       <div className="p-4 text-center text-lg font-semibold">
@@ -185,11 +221,18 @@ const Page = () => {
         <div className="max-w-2xl mx-auto p-4 grid grid-cols-[1fr_2fr] gap-4 backdrop-blur-xl 
         bg-[rgba(210,210,210,0.4)] dark:bg-[rgba(84,83,83,0.4)] rounded-2xl px-8">
           <div className="w-min h-min flex justify-center items-center">
-            <img
-              className="rounded-full aspect-square w-32 max-sm:w-22 object-cover ring-1 ring-slate-300"
-              src={profile.images?.[0]?.url || "/default_pfp.jpg"}
-              alt={profile.display_name}
-            />
+            {profile.images?.[0]?.url ? (
+              <img
+                className="rounded-full aspect-square w-32 max-sm:w-22 object-cover ring-1 ring-slate-300"
+                src={profile.images[0].url}
+                alt={profile.display_name}
+              />
+            ) : (
+              <div className="rounded-full aspect-square w-32 max-sm:w-22 flex items-center justify-center 
+              bg-blue-800 text-white text-5xl font-bold ring-1 ring-slate-300">
+                {getInitials(profile.display_name)}
+              </div>
+            )}
           </div>
           <div className="flex flex-col justify-center gap-2">
             <span className="font-bold text-xl max-sm:text-lg">{profile.display_name}</span>

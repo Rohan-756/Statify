@@ -11,7 +11,7 @@
     inset: 0;
     height: 350px;
     width: 100%;
-    background: linear-gradient(270deg, #d6075d, #e15068, #f28766,#f3d298,#79a6f3, #5f24e8, #7602be, #bd00ad);
+    background: linear-gradient(270deg, #d6075d, #e15068, #f28766,#f3d298,#79a6f3, #5f24e8, #bd00ad);
     background-size: 500% 500%;
     animation: gradientFlow 12s ease infinite;
     opacity: 1;
