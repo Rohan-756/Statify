@@ -101,7 +101,7 @@ const NavBar = (props: NavBarProps) => {
           {props.login === "true" ? (
             // login button
             <a
-              href="http://localhost:4000/login"
+              href="/api/login"
               aria-label="Login with Spotify"
             >
               <Button

@@ -1,7 +1,7 @@
-// pages/api/top-tracks.js
+// pages/api/top-artists.js
 import axios from 'axios';
 import { parse } from 'cookie';
-import { refreshAccessToken } from './refreshAccessToken';
+import { refreshAccessToken } from '../refreshAccessToken/route';
 
 export default async function handler(req, res) {
   const cookies = parse(req.headers.cookie || '');
@@ -26,11 +26,11 @@ export default async function handler(req, res) {
 
   try {
     const response = await axios.get(
-      `https://api.spotify.com/v1/me/top/tracks?limit=50&time_range=${timeRange}`,
+      `https://api.spotify.com/v1/me/top/artists?limit=50&time_range=${timeRange}`,
       { headers: { Authorization: `Bearer ${token}` } }
     );
     res.json(response.data);
   } catch (error) {
-    res.status(400).json({ error: 'Failed to fetch top tracks', details: error.message });
+    res.status(400).json({ error: 'Failed to fetch top artists', details: error.message });
   }
 }

@@ -1,7 +1,7 @@
-// pages/api/profile.js
+// pages/api/me.js
 import axios from 'axios';
 import { parse } from 'cookie';
-import { refreshAccessToken } from './refreshAccessToken';
+import { refreshAccessToken } from '../refreshAccessToken';
 
 export default async function handler(req, res) {
   const cookies = parse(req.headers.cookie || '');
@@ -24,11 +24,12 @@ export default async function handler(req, res) {
   }
 
   try {
-    const response = await axios.get(`https://api.spotify.com/v1/me`, {
-      headers: { Authorization: `Bearer ${token}` },
-    });
+    const response = await axios.get(
+      `https://api.spotify.com/v1/me/player/recently-played?limit=50`,
+      { headers: { Authorization: `Bearer ${token}` } }
+    );
     res.json(response.data);
   } catch (error) {
-    res.status(400).json({ error: 'Failed to fetch profile', details: error.message });
+    res.status(400).json({ error: 'Failed to fetch recently played', details: error.message });
   }
 }
