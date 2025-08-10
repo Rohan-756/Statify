@@ -9,7 +9,7 @@ dotenv.config();
 const app = express();
 app.use(cookieParser());
 app.use(cors({
-  origin: "http://127.0.0.1:3000",
+  origin: "https://statify-wine.vercel.app",
   credentials: true
 }));
 app.use(express.json());
@@ -17,7 +17,7 @@ app.use(express.json());
 const PORT = process.env.PORT;
 const CLIENT_ID = process.env.CLIENT_ID;
 const CLIENT_SECRET = process.env.CLIENT_SECRET;
-const REDIRECT_URI = 'http://127.0.0.1:3000/auth';
+const REDIRECT_URI = 'https://statify-wine.vercel.app/auth';
 
 app.use((req, res, next) => {
   // console.log('Cookies:', req.cookies); // Logs cookies from each request
