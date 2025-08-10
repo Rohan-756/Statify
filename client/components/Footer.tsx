@@ -55,6 +55,7 @@
 
 import React from 'react'
 import Image from "next/image";
+import Link from 'next/link';
 
 const Footer = () => {
   return (
@@ -98,9 +99,11 @@ const Footer = () => {
                   ‧ GitHub
                 </a>
               </li> */}
+              <Link href="/privacy">
               <li className="list-none hover:underline cursor-pointer active:underline">
                 ‧ Privacy Policy
               </li>
+              </Link>
             </nav>
           </section>
 
