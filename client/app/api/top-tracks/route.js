@@ -1,8 +1,7 @@
 // app/api/top-tracks/route.js
 import axios from "axios";
 import { cookies } from "next/headers";
-import { refreshAccessToken } from "../refreshAccessToken/route";
-
+import { refreshAccessToken } from "@/lib/spotify";
 export async function GET(request) {
   const cookieStore = cookies();
   const timeRange =

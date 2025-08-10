@@ -1,8 +1,7 @@
 // app/api/me/route.js
 import axios from "axios";
 import { cookies } from "next/headers";
-import { refreshAccessToken } from "../refreshAccessToken/route";
-
+import { refreshAccessToken } from "@/lib/spotify";
 export async function GET() {
   const cookieStore = cookies();
   let token = cookieStore.get("access_token")?.value;
