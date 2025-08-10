@@ -1,5 +1,5 @@
 // app/api/logout/route.js
-export async function GET() {
+export async function POST() {
   const headers = new Headers();
   headers.append(
     "Set-Cookie",
