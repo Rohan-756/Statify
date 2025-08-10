@@ -195,11 +195,11 @@ const TopTracks = ({ timeRange }: TopTracksProps) => {
                 </div>
             ) : (
                 <>
-                    <ol className="mt-3 space-y-3 px-2">
+                    <ul className="mt-3">
                         {tracks.map((track, index) => (
                             <li
                                 key={index}
-                                className={`flex items-center gap-4 rounded-lg p-3 backdrop-blur-md shadow-sm transition-all hover:shadow-md 
+                                className={`flex m-2 whitespace-nowrap items-center justify-start gap-4 rounded-md p-2 backdrop-blur-md z-1
                                     ${index === 0
                                         ? "bg-[rgba(212,175,55,0.8)] dark:bg-[rgb(212,175,55,0.7)]"
                                         : index === 1
@@ -209,11 +209,9 @@ const TopTracks = ({ timeRange }: TopTracksProps) => {
                                                 : "bg-[rgba(210,210,210,0.5)] dark:bg-[rgba(68,68,68,0.5)]"
                                     }`}
                             >
-                                <div className="text-center w-6 font-semibold text-slate-700 dark:text-gray-200">
-                                    {index + 1}
-                                </div>
+                                <div className="text-center min-w-5">{index + 1}</div>
                                 <Image
-                                    className="w-[64px] h-[64px] max-sm:w-[50px] max-sm:h-[50px] rounded-md shadow-sm"
+                                    className="w-[64px] h-[64px] max-sm:w-[50px] max-sm:h-[50px] rounded-sm object-cover"
                                     src={track.album.images[1]?.url || track.album.images[0]?.url || ""}
                                     alt={`${track.name} Album Art`}
                                     width={64}
@@ -221,26 +219,29 @@ const TopTracks = ({ timeRange }: TopTracksProps) => {
                                     loading={index > 2 ? "lazy" : "eager"}
                                     priority={index < 3}
                                 />
-                                <div className="flex flex-col overflow-hidden flex-1">
+                                <div className="flex flex-col overflow-hidden text-ellipsis flex-1">
                                     <a
                                         href={track.external_urls.spotify}
                                         target="_blank"
                                         rel="noopener noreferrer"
-                                        className="text-slate-900 dark:text-white font-medium truncate hover:underline w-min"
+                                        className="text-slate-800 dark:text-white w-min"
+                                        title={`Listen to ${track.name} on Spotify`}
                                     >
-                                        {track.name}
+                                        <span className="font-medium overflow-hidden text-ellipsis hover:underline active:underline cursor-pointer">
+                                            {track.name}
+                                        </span>
                                     </a>
-                                    <span className="text-slate-800 dark:text-gray-300 text-sm truncate w-min">
+                                    <span className="text-sm text-slate-800 dark:text-gray-200 overflow-hidden text-ellipsis w-min">
                                         {track.artists.map(artist => artist.name).join(", ")}
                                     </span>
                                 </div>
                             </li>
                         ))}
-                    </ol>
+                    </ul>
 
-                    <div className="text-2xl font-semibold text-slate-800 dark:text-white w-full text-center mb-8 mt-12">
+                    <h2 className="text-2xl font-semibold text-slate-800 dark:text-white w-full text-center mb-8 mt-10">
                         That&apos;s It For Now!
-                    </div>
+                    </h2>
                 </>
             )}
         </>
