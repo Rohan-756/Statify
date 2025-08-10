@@ -1,34 +1,50 @@
-// pages/api/profile.js
-import axios from 'axios';
-import { parse } from 'cookie';
-import { refreshAccessToken } from '../refreshAccessToken/route';
+// app/api/profile/route.js
+import axios from "axios";
+import { cookies } from "next/headers";
+import { refreshAccessToken } from "../refreshAccessToken/route";
 
-export default async function handler(req, res) {
-  const cookies = parse(req.headers.cookie || '');
+export async function GET() {
+  const cookieStore = cookies();
+  let token = cookieStore.get("access_token")?.value;
+  const refreshToken = cookieStore.get("refresh_token")?.value;
 
-  let token = cookies.access_token;
-  const refreshToken = cookies.refresh_token;
-
+  // If no access token but we have a refresh token, refresh it
   if (!token && refreshToken) {
     token = await refreshAccessToken(refreshToken);
     if (token) {
-      res.setHeader(
-        'Set-Cookie',
-        `access_token=${token}; HttpOnly; Path=/; Max-Age=3600; Secure; SameSite=Lax`
-      );
+      cookieStore.set("access_token", token, {
+        httpOnly: true,
+        secure: process.env.NODE_ENV === "production",
+        sameSite: "lax",
+        path: "/",
+        maxAge: 3600, // 1 hour
+      });
     }
   }
 
   if (!token) {
-    return res.status(401).json({ error: 'Access token missing in cookies' });
+    return new Response(
+      JSON.stringify({ error: "Access token missing in cookies" }),
+      { status: 401, headers: { "Content-Type": "application/json" } }
+    );
   }
 
   try {
     const response = await axios.get(`https://api.spotify.com/v1/me`, {
       headers: { Authorization: `Bearer ${token}` },
     });
-    res.json(response.data);
+
+    return new Response(JSON.stringify(response.data), {
+      status: 200,
+      headers: { "Content-Type": "application/json" },
+    });
   } catch (error) {
-    res.status(400).json({ error: 'Failed to fetch profile', details: error.message });
+    return new Response(
+      JSON.stringify({
+        error: "Failed to fetch profile",
+        details: error.message,
+      }),
+      { status: 400, headers: { "Content-Type": "application/json" } }
+    );
   }
 }

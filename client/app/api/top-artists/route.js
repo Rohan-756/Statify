@@ -1,27 +1,36 @@
-// pages/api/top-artists.js
-import axios from 'axios';
-import { parse } from 'cookie';
-import { refreshAccessToken } from '../refreshAccessToken/route';
+// app/api/top-artists/route.js
+import axios from "axios";
+import { cookies } from "next/headers";
+import { refreshAccessToken } from "../refreshAccessToken/route";
 
-export default async function handler(req, res) {
-  const cookies = parse(req.headers.cookie || '');
-  const timeRange = req.query.time_range || 'medium_term';
+export async function GET(request) {
+  const cookieStore = cookies();
+  const timeRange =
+    new URL(request.url).searchParams.get("time_range") || "medium_term";
 
-  let token = cookies.access_token;
-  const refreshToken = cookies.refresh_token;
+  let token = cookieStore.get("access_token")?.value;
+  const refreshToken = cookieStore.get("refresh_token")?.value;
 
   if (!token && refreshToken) {
     token = await refreshAccessToken(refreshToken);
     if (token) {
-      res.setHeader(
-        'Set-Cookie',
-        `access_token=${token}; HttpOnly; Path=/; Max-Age=3600; Secure; SameSite=Lax`
-      );
+      cookieStore.set({
+        name: "access_token",
+        value: token,
+        httpOnly: true,
+        path: "/",
+        maxAge: 3600,
+        secure: true,
+        sameSite: "lax",
+      });
     }
   }
 
   if (!token) {
-    return res.status(401).json({ error: 'Access token missing in cookies' });
+    return new Response(
+      JSON.stringify({ error: "Access token missing in cookies" }),
+      { status: 401, headers: { "Content-Type": "application/json" } }
+    );
   }
 
   try {
@@ -29,8 +38,17 @@ export default async function handler(req, res) {
       `https://api.spotify.com/v1/me/top/artists?limit=50&time_range=${timeRange}`,
       { headers: { Authorization: `Bearer ${token}` } }
     );
-    res.json(response.data);
+    return new Response(JSON.stringify(response.data), {
+      status: 200,
+      headers: { "Content-Type": "application/json" },
+    });
   } catch (error) {
-    res.status(400).json({ error: 'Failed to fetch top artists', details: error.message });
+    return new Response(
+      JSON.stringify({
+        error: "Failed to fetch top artists",
+        details: error.message,
+      }),
+      { status: 400, headers: { "Content-Type": "application/json" } }
+    );
   }
 }
