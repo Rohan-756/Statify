@@ -1,4 +1,7 @@
 // app/privacy/page.tsx
+import { Button } from "@/components/ui/button";
+import { ArrowRight } from "lucide-react";
+import Link from "next/link";
 import React from "react";
 
 export default function PrivacyPolicyPage() {
@@ -76,6 +79,14 @@ export default function PrivacyPolicyPage() {
           <br />📧 <strong>rhnsrsh2005@gmail.com</strong>
         </p>
       </section>
+      <Link href="/" aria-label="Connect your Spotify account to start viewing stats">
+              <Button
+                className="text-md p-[10px] font-semibold rounded-full bg-[#1ed760] hover:bg-[#1db954] cursor-pointer active:bg-[#1db954] mx-auto flex justify-center items-center w-2/3 min-w-fit mt-8"
+              >
+                Go back
+                <ArrowRight />
+              </Button>
+            </Link>
     </main>
   );
 }

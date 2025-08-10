@@ -99,11 +99,16 @@ const Footer = () => {
                   ‧ GitHub
                 </a>
               </li> */}
+              <Link href="/terms">
+              <li className="list-none hover:underline cursor-pointer active:underline">
+                ‧ Terms of Use
+              </li>
+              </Link>
               <Link href="/privacy">
               <li className="list-none hover:underline cursor-pointer active:underline">
                 ‧ Privacy Policy
               </li>
-              </Link>
+              </Link> 
             </nav>
           </section>
 
