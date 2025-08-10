@@ -64,7 +64,7 @@ export default function PrivacyPolicyPage() {
         <p>You may:</p>
         <ul className="list-disc pl-6">
           <li>Revoke our access to your Spotify account at any time from your Spotify account settings.</li>
-          <li>Request that we delete any data we may have stored about you by contacting us at <strong>[your email here]</strong>.</li>
+          <li>Request that we delete any data we may have stored about you by contacting us at <strong>rhnsrsh2005@gmail.com</strong>.</li>
         </ul>
 
         <h2 className="text-xl font-semibold mt-6">6. Changes to This Policy</h2>
