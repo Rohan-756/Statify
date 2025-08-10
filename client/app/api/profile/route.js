@@ -1,7 +1,7 @@
 // pages/api/profile.js
 import axios from 'axios';
 import { parse } from 'cookie';
-import { refreshAccessToken } from '../refreshAccessToken';
+import { refreshAccessToken } from '../refreshAccessToken/route';
 
 export default async function handler(req, res) {
   const cookies = parse(req.headers.cookie || '');
