@@ -88,7 +88,7 @@ const NavBar = (props: NavBarProps) => {
               src="/website-logo.png"
               alt="Website logo"
               width={84}
-              height={84}
+              height={47}
               className="min-lg:w-21 w-19 h-auto mr-2"
             />   
               

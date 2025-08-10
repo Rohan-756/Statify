@@ -92,7 +92,7 @@ export default function Home() {
               <Image
                 src="/spotify-logo.png"
                 alt="Spotify logo"
-                width={90}
+                width={220}
                 height={60}
                 className="w-auto h-15 md:h-12 sm:h-12 max-sm:h-[8.5vw]"
               />
@@ -121,7 +121,7 @@ export default function Home() {
               src="/man_listening_songs.jpg"
               alt="Person listening to music on headphones"
               width={500}
-              height={350}
+              height={335}
               className="rounded-xl dark:shadow-2xl dark:shadow-slate-800"
             />
           </div>
@@ -132,7 +132,7 @@ export default function Home() {
               src="/woman_listening_songs.jpg"
               alt="Woman enjoying her favorite songs"
               width={500}
-              height={350}
+              height={335}
               className="rounded-xl dark:shadow-2xl dark:shadow-slate-800"
             />
           </div>
