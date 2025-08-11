@@ -2,7 +2,7 @@
 
 Statify is a web app that connects to your Spotify account and shows your **top tracks**, **top artists**, and other listening stats in a clean, responsive interface.
 
-![Statify Screenshot](docs/screenshot.png) <!-- optional -->
+![Statify Screenshot](./Statify_image.jpg) <!-- optional -->
 
 ---
 
