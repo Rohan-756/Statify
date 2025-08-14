@@ -2,8 +2,6 @@
 import axios from "axios";
 import { cookies } from "next/headers";
 import { refreshAccessToken } from "@/lib/spotify";
-import redis from "@/lib/redis";
-
 export async function GET(request) {
   const cookieStore = cookies();
   const timeRange =
@@ -11,8 +9,6 @@ export async function GET(request) {
 
   let token = cookieStore.get("access_token")?.value;
   const refreshToken = cookieStore.get("refresh_token")?.value;
-
-  await redis.set("name:1","Rohan");
 
   if (!token && refreshToken) {
     token = await refreshAccessToken(refreshToken);
