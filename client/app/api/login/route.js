@@ -12,7 +12,6 @@ export async function GET() {
     client_id: process.env.SPOTIFY_CLIENT_ID,
     scope: scopes.join(" "),
     redirect_uri: process.env.SPOTIFY_REDIRECT_URI,
-    show_dialog:"true"
   });
 
   return Response.redirect(
