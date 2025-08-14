@@ -13,7 +13,7 @@ export async function GET(request) {
 
     const cached = await redis.get(`top-tracks:${timeRange}`);
     if (cached) {
-      return new Response(JSON.stringify(cached), {
+      return new Response(cached, {
         status: 200,
         headers: { "Content-Type": "application/json" },
       });
@@ -50,7 +50,7 @@ export async function GET(request) {
       { headers: { Authorization: `Bearer ${token}` } }
     );
 
-    await redis.set(`top-tracks:${timeRange}`, response.data, { ex: 3600 });
+    await redis.set(`top-tracks:${timeRange}`, JSON.stringify(response.data), { ex: 3600 });
 
 
     return new Response(JSON.stringify(response.data), {
