@@ -77,7 +77,7 @@ import TopGenres from "./TopGenres";
 const timeRangeLabels = {
   short_term: "Past Month",
   medium_term: "6 Months",
-  long_term: "All Time",
+  long_term: "Past Year",
 };
 
 const getNextRange = (current: string): string => {
