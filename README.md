@@ -17,6 +17,10 @@ Statify is a web app that connects to your Spotify account and shows your **top 
 
 ---
 
+## Try it for yourself
+
+- Visit https://statify-wine.vercel.app
+
 ## 🛠 Tech Stack
 
 - **Frontend:** Next.js 14 (App Router), TypeScript, Tailwind CSS
